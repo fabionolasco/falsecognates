@@ -1,0 +1,50 @@
+.card-block {
+  display: block;
+  width: 100%;
+  vertical-align: top;
+}
+
+.card-block md-card-title {
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+}
+
+.card-block md-card-content {
+  margin: 0;
+}
+
+.card-block.card-left {
+  text-align: left;
+}
+
+.card-block.card-right {
+  border-top: 1px solid #ccc;
+}
+
+md-card-actions {
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+[md-button] {
+    margin: 0 12px !important;
+}
+
+.selected {
+  background-color: #d2e1e6;
+}
+
+
+@media (min-width: 768px) {
+  .card-block {
+    display: inline-block;
+    width: 49.5%;
+  }
+  .card-block.card-right {
+    border-top: none;
+  }
+  .card-block.card-left {
+    text-align: right;
+  }
+}

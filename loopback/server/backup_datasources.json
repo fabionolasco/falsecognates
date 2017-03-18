@@ -1,0 +1,34 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysqlDs": {
+    "host": "MY_IP",
+    "port": 3306,
+    "url": "",
+    "database": "DATABASE_NAME",
+    "password": "PASSWORD",
+    "name": "mysqlDs",
+    "user": "root",
+    "connector": "mysql",
+    "createDatabase": true
+  },
+  "myEmailDataSource": {
+    "name": "myEmailDataSource",
+    "connector": "mail",
+    "transports": [{
+      "type": "smtp",
+      "host": "smtp.falsecognates.com",
+      "secure": false,
+      "port": 25,
+      "tls": {
+        "rejectUnauthorized": false
+      },
+      "auth": {
+        "user": "USERNAME",
+        "pass": "PASSWORD"
+      }
+    }]
+  }
+}

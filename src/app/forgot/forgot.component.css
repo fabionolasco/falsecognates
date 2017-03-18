@@ -1,0 +1,25 @@
+.forgot {
+  padding: 0 35px;
+  font-weight: 400;
+}
+
+.forgot h3 {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.forgot label {
+  width: 100%;
+}
+
+.forgot .form-group {
+  display: block;
+  max-width: 400px;
+}
+
+.forgot .security {
+  position: absolute;
+  top: -99999px;
+}
+
+

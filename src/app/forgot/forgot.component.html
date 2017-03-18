@@ -1,0 +1,40 @@
+<div class="forgot">
+
+  <div class="row">
+
+    <div class="col-xs-12">
+      <ul class="breadcrumbs nopadding">
+        <li><a routerLink="/">Homepage</a></li>
+        <li>/</li>
+        <li>Forgot Password</li>
+      </ul>
+    </div>
+
+    <div class="col-xs-12" *ngIf="MessagesService.message.length > 0">
+      &nbsp;<br>
+      <div class="alert" [ngClass]="MessagesService.type" role="alert">
+        {{ MessagesService.message }}
+      </div>
+    </div>
+
+    <form class="col-xs-12 col-lg-6">
+
+      <h3>Forgot Password?</h3>
+
+      <input #forgotSecurity type="text" name="forgot-security" class="security" [(ngModel)]="forgotData.security">
+
+      <div class="form-group">
+        <label for="forgot-email">Email:</label>
+        <input #forgotEmail type="text" name="forgot-email" class="bar-input" [(ngModel)]="forgotData.email">
+      </div>
+
+      <div class="form-group">
+        <button md-raised-button (click)="sendForgotMessage()">Request Password Change</button>
+      </div>
+
+    </form>
+
+
+  </div>
+
+</div>

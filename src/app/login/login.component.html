@@ -1,0 +1,86 @@
+<div class="login">
+
+  <div class="row">
+
+    <div class="col-xs-12">
+      <ul class="breadcrumbs nopadding">
+        <li><a routerLink="/">Homepage</a></li>
+        <li>/</li>
+        <li>Login &amp; Register</li>
+      </ul>
+    </div>
+
+    <div class="col-xs-12" *ngIf="MessagesService.message.length > 0">
+      &nbsp;<br>
+      <div class="alert" [ngClass]="MessagesService.type" role="alert">
+        {{ MessagesService.message }}
+      </div>
+    </div>
+
+    <form class="col-xs-12 col-lg-6">
+
+      <h3>Login</h3>
+
+      <input #loginSecurity type="text" name="login-security" class="security" [(ngModel)]="loginData.security">
+
+      <div class="form-group">
+        <label for="login-email">Email:</label>
+        <input #loginEmail type="text" name="login-email" class="bar-input" [(ngModel)]="loginData.email">
+      </div>
+
+      <div class="form-group">
+        <label for="login-password">Password:</label>
+        <input #loginPassword type="password" name="login-password" class="bar-input" [(ngModel)]="loginData.password">
+      </div>
+
+      <div class="form-group">
+        <button md-raised-button (click)="sendLogin()">Login</button>
+      </div>
+
+      <div class="form-group">
+        <a [routerLink]="['/forgot']">Forgot your password?</a>
+      </div>
+
+    </form>
+
+    <div class="col-xs-12 hidden-lg-up">
+      <hr>
+    </div>
+
+    <form class="col-xs-12 col-lg-6">
+
+      <h3>Register</h3>
+
+      <input #registerSecurity type="text" name="register-security" class="security" [(ngModel)]="registerData.security">
+
+      <div class="form-group">
+        <label for="register-email">Email:</label>
+        <input #registerEmail type="text" name="register-email" class="bar-input" [(ngModel)]="registerData.email">
+      </div>
+
+      <div class="form-group">
+        <label for="register-password">Password:</label>
+        <input #registerPassword type="password" name="register-password" class="bar-input" [(ngModel)]="registerData.password">
+      </div>
+
+      <div class="form-group">
+        <label for="register-confirm">Confirm Password:</label>
+        <input #registerConfirm type="password" name="register-confirm" class="bar-input" [(ngModel)]="registerData.confirm">
+      </div>
+
+      <div class="form-group">
+        <md-checkbox [checked]="agreed" (change)="agreed = !agreed"></md-checkbox>
+        <span>
+          I read and accepted the FalseCognates.com <a routerLink="/agreement">Agreement</a>.
+        </span>
+      </div>
+
+      <div class="form-group">
+        <button md-raised-button [disabled]="!agreed" (click)="sendRegistration()">Register</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

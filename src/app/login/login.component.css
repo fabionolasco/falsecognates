@@ -1,0 +1,25 @@
+.login {
+  padding: 0 35px;
+  font-weight: 400;
+}
+
+.login h3 {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.login label {
+  width: 100%;
+}
+
+.login .form-group {
+  display: block;
+  max-width: 400px;
+}
+
+.login .security {
+  position: absolute;
+  top: -99999px;
+}
+
+

@@ -1,0 +1,185 @@
+.hero-h2 {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: lighter;
+  line-height: 1.15rem;
+}
+
+.banner {
+  height: 200px;
+  overflow: hidden;
+  background-image: url('/assets/images/bg3.jpg');
+  background-position: left 30%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.description {
+  display: block;
+  width: 100%;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  margin-left: 0px;
+  margin-bottom: 20px;
+  text-shadow: rgb(3, 3, 3) 1px 1px 3px;
+}
+
+.hero.hero-small {
+  background-position: right 20%;
+  background-size: 160%;
+}
+
+.hero.hero-small .hero-content {
+  height: 64px;
+}
+
+.hero.hero-small .hero-h2,
+.hero.hero-small br,
+.hero.hero-small a {
+  display: none;
+}
+
+.hero a {
+  color: #4d4946;
+}
+
+.hero-content a {
+  color: #ffc439;
+}
+
+.hero-content {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  width: 100%;
+  background-color: rgba(0,0,0,0.70);
+  padding: 15px 15px 5px;
+}
+
+.hero-content h1 {
+  font-size: 1rem;
+  font-weight: normal;
+  text-shadow: none;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.hero.hero-small h1 {
+  line-height: 36px;
+}
+
+.hero.hero-small .hero-icons * {
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+.hero-icons {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+.hero-icons i {
+  text-shadow: rgb(33, 33, 33) 1px 2px 2px;
+}
+
+/*.hero-icons * {
+  display: inline !important;
+}*/
+
+.hero-icons button {
+  float: right;
+  clear: both;
+  width: 94px;
+  background-color: #6d6d6d;
+  color: #ffc439;
+  margin: 5px;
+  font-weight: normal;
+}
+
+.hero-icons button:hover {
+  background-color: #ffc439;
+  color: #fff;
+}
+
+.hero.hero-small .hero-icons span {
+  height: 30px;
+  line-height: 35px;
+}
+
+.hero.hero-small .hero-icons {
+  position: absolute;
+  top: 10px;
+}
+
+.hero-icons span {
+  color: #aaa;
+  text-shadow: none;
+  font-size: 0.8rem;
+}
+
+.hero-icons a {
+  font-size: 2rem;
+  color: #ffc439;
+}
+
+div.banner.homepage {
+  background-image: url(/assets/images/bg3.jpg);
+  background-position: left 35%;
+}
+
+div.banner.about {
+  background-image: url(/assets/images/bg4.jpg);
+  background-position: left 25%;
+}
+
+div.banner.contact {
+  background-image: url(/assets/images/bg2.jpg);
+  background-position: left 25%;
+}
+
+div.banner.search {
+  background-image: url(/assets/images/bg5.jpg);
+  background-position: left 35%;
+}
+
+div.banner.suggest {
+  background-image: url(/assets/images/bg1.jpg);
+  background-position: left 15%;
+}
+
+div.banner.others {
+  background-image: url(/assets/images/bg3.jpg);
+  background-position: left 35%;
+}
+
+@media (min-width: 768px) {
+  .hero-icons button {
+    width: 120px;
+  }
+  .banner {
+    height: 200px;
+  }
+  .banner.homepage {
+    height: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .banner {
+    height: 200px;
+  }
+  .banner.homepage {
+    height: 400px;
+  }
+}

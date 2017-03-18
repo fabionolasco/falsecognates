@@ -1,0 +1,144 @@
+<div class="suggest">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="breadcrumbs nopadding">
+        <li><a routerLink="/">Homepage</a></li>
+        <li>/</li>
+        <li>Suggest</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-xs-12" *ngIf="alertMessage && alertMessage.length > 0">
+    &nbsp;<br>
+    <div class="alert alert-danger" role="alert">
+      {{ alertMessage }}
+    </div>
+  </div>
+
+  <div class="col-xs-12" *ngIf="successMessage && successMessage.length > 0">
+    &nbsp;<br>
+    <div class="alert alert-success" role="alert">
+      {{ successMessage }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <br>
+      <h3>Suggest a False Cognate</h3>
+      <hr class="base-hr">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <label for="myDataField1">Please select language 1:</label>
+      <input id="myDataField1"
+        name="myDataField1"
+        #myDataField1
+        class="bar-input"
+        auto-complete
+        auto-complete-placeholder="Language 1..."
+        min-chars="0"
+        [list-formatter]="myListFormatter"
+        select-value-of="language_name"
+        [(ngModel)]="data.lang1"
+        [source]="mySource"
+        tab-to-select="true"
+        accept-user-input="false">
+      <hr class="base-hr">
+      <br class="hidden-sm-up">
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <label for="myDataField2">Please select language 2:</label>
+      <input id="myDataField2"
+        name="myDataField2"
+        class="bar-input"
+        auto-complete
+        auto-complete-placeholder="Language 2..."
+        min-chars="0"
+        [list-formatter]="myListFormatter"
+        select-value-of="language_name"
+        [(ngModel)]="data.lang2"
+        [source]="mySource"
+        tab-to-select="true"
+        accept-user-input="false">
+      <hr class="base-hr">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <label for="word1">Word in {{data.lang1}}:</label>
+      <input type="text"
+        name="word1"
+        class="bar-input"
+        [disabled]="!data.lang1 || data.lang1.length < 1"
+        (keypress)="capitalize('word1')"
+        [(ngModel)]="data.word1">
+      <hr class="base-hr">
+      <br class="hidden-sm-up">
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <label for="word2">Word in {{data.lang2}}:</label>
+      <input type="text"
+        name="word2"
+        class="bar-input"
+        [disabled]="!data.lang2 || data.lang2.length < 1"
+        (keypress)="capitalize('word2')"
+        [(ngModel)]="data.word2">
+      <hr class="base-hr">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <label for="meaning1">Using English, please define the {{data.lang1}} word "{{data.word1}}":</label>
+      <textarea name="meaning1"
+      class="bar-textarea"
+      maxlength="1000"
+      [disabled]="!data.word1"
+      [(ngModel)]="data.meaning1"></textarea>
+      <hr class="base-hr">
+      <br class="hidden-sm-up">
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <label for="meaning2">Using English, please define the {{data.lang2}} word "{{data.word2}}":</label>
+      <textarea name="meaning2"
+      maxlength="1000"
+      class="bar-textarea"
+      [disabled]="!data.word2"
+      [(ngModel)]="data.meaning2"></textarea>
+      <hr class="base-hr">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <span class="base-line-height">
+        By submiting this form you are accepting the <span class="bold">FalseCognates.com</span>
+      </span>
+      <a routerLink="/agreement" target="_blank"> Terms and Agreements.</a>
+      <hr class="base-hr">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <br>
+      <button id="search-button"
+        md-raised-button
+        (click)="submitFalseCognate()"
+        [disabled]="!canSubmit || !data.word1 || !data.word2 || !data.meaning1 || !data.meaning2">Submit Form</button>
+      <br>
+      &nbsp;
+      <br>
+    </div>
+  </div>
+
+</div>

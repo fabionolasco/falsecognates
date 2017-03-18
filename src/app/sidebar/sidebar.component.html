@@ -1,0 +1,57 @@
+<nav #nav
+  class="sidebar pos-f-t h-100 animate"
+  [ngClass]="{smallScreen: SidebarService.smallScreen, hideOnDesktop: SidebarService.sidebarOpen}"
+  (swipeleft)="SidebarService.changeStatus(SidebarService.smallScreen ? false : true)"
+  (swiperight)="SidebarService.changeStatus(SidebarService.smallScreen ? true : false)">
+
+  <i class="fa fa-bars hamburger side-optional animate hidden-sm-down"
+    aria-hidden="true"
+    *ngIf="SidebarService.sidebarOpen"
+    (swipeleft)="SidebarService.changeStatus(true)"
+    (swiperight)="SidebarService.changeStatus(false)"
+    (click)="SidebarService.changeStatus()"></i>
+
+  <i class="fa fa-bars hamburger animate hidden-md-up for-mobile"
+    aria-hidden="true"
+    (click)="SidebarService.changeStatus()"></i>
+
+  <a routerLink="/" (click)="controlBar()" class="svg-link">
+    <object  type="image/svg+xml" data="/assets/images/false-cognates-logo.svg" class="logo">
+      <img src="/assets/images/false-cognates-logo.png"
+      alt="False Cognates Logo"
+      class="logo">
+    </object>
+  </a>
+
+  <h1 routerLink="/" class="pointer">False Cognates</h1>
+
+  <hr class="base-hr">
+
+  <button md-raised-button (click)="controlBar()" routerLink="/about">
+    About
+  </button>
+
+  <button md-raised-button (click)="controlBar()" routerLink="/contact">
+    Contact
+  </button>
+
+  <button md-raised-button
+    *ngIf="!UserService.token || UserService.token.length <= 0"
+    (click)="controlBar()"
+    routerLink="/login">
+    Login &amp; Register
+  </button>
+
+  <button md-raised-button (click)="controlBar()" class="suggest-button" routerLink="/suggest">
+    Suggest a False Cognate <md-icon class="md-24">add</md-icon>
+  </button>
+
+  <hr class="base-hr">
+
+  <a (click)="controlBar()" routerLink="/history">Search history</a>
+  <span *ngIf="UserService.token && UserService.token.length > 0">
+    <br>
+    <a (click)="logout()" routerLink="/" >Log Out</a>
+  </span>
+
+</nav>

@@ -1,0 +1,27 @@
+{
+  "name": "language",
+  "plural": "languages",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "acronym": {
+      "type": "string",
+      "required": true
+    },
+    "language_name": {
+      "type": "string",
+      "required": true
+    },
+    "native_name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

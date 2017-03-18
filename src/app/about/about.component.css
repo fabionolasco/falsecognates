@@ -1,0 +1,48 @@
+.about {
+  padding: 0 35px;
+  font-weight: 400;
+}
+
+.about h3 {
+  margin-bottom: 20px;
+}
+
+.about h4 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.about li {
+  margin-bottom: 20px;
+}
+
+.about img {
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin: 0 12px 12px 0;
+  width: 200px;
+  float: none;
+  display: block;
+  background-color: #fff;
+}
+
+.summary {
+  background-color: #ccc;
+  padding: 25px;
+  margin: 35px 10px 50px;
+  font-style: italic;
+  position: relative;
+}
+
+.summary i {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+  .about img {
+    float: left;
+  }
+}

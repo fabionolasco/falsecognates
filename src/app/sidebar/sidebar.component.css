@@ -1,0 +1,130 @@
+.sidebar {
+  position: fixed;
+  width: 300px;
+  left: 0;
+  top: 0;
+  margin-left: -300px;
+  padding-top: 20px;
+  background-color: #045D7B;
+  color: #ccc;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  z-index: 2;
+}
+
+.sidebar.smallScreen.hideOnDesktop {
+  margin-left: 0;
+  left: 0;
+}
+
+.sidebar.hideOnDesktop {
+  left: -290px;
+}
+
+.sidebar h1,
+.sidebar object {
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar .hamburger.fa.for-mobile {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 305px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.sidebar.hideOnDesktop .hamburger.fa {
+  left: 10px;
+}
+
+.sidebar.hideOnDesktop .hamburger.fa.for-mobile {
+  left: 305px;
+}
+
+.sidebar  i.fa.side-optional {
+  color: #fff;
+  background-color: #045D7B;
+  height: 44px;
+  width: 44px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 2rem;
+  padding: 7px;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    margin-left: 0px;
+  }
+  .sidebar  i.fa.side-optional {
+    left: 300px;
+  }
+}
+
+.sidebar a,
+.sidebar a:visited {
+  color: #4C9CB7;
+}
+
+.sidebar a:hover {
+  color: #fff;
+}
+
+.sidebar h1 {
+  color: #FFC439 !important;
+  font-size: 2rem;
+}
+
+.sidebar .logo {
+  width: 140px;
+}
+
+.sidebar button {
+  width: 100%;
+  margin-bottom: 5px;
+  color: #045D7B;
+  font-weight: lighter;
+}
+
+.sidebar .suggest-button {
+  background-color: #FFC439;
+  color: #fff;
+  font-weight: lighter;
+}
+
+.sidebar .suggest-button:hover {
+  background-color: #fff;
+  color: #FFC439;
+}
+
+.sidebar .fa {
+  font-size: 40px;
+  padding: 5px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.svg-link {
+  position: relative;
+  display: inline-block;
+  width: 99%;
+  height: 155px;
+  text-align: center;
+}
+
+.svg-link:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

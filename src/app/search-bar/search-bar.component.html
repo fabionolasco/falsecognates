@@ -1,0 +1,75 @@
+<div class="row" *ngIf="mySource">
+
+  <div class="col-xs-12">
+      <h3>Search by Languages</h3>
+      <br>
+  </div>
+
+  <div class="col-xs-12 col-sm-6">
+    <label for="myDataField1">Please select language 1:</label>
+    <input  id="myDataField1"
+      name="myDataField1"
+      #myDataField1
+      class="bar-input"
+      auto-complete
+      auto-complete-placeholder="Language 1..."
+      min-chars="0"
+      [list-formatter]="myListFormatter"
+      select-value-of="language_name"
+      [(ngModel)]="searchParams.data.lang1"
+      [source]="mySource"
+      accept-user-input="false"
+      tab-to-select="true"
+      (valueChanged)="myCallback($event, 'lang1')">
+
+      <br class="hidden-sm-up">
+  </div>
+
+  <div class="col-xs-12 col-sm-6">
+    <label for="myDataField2">Please select language 2:</label>
+      <input id="myDataField2"
+        name="myDataField2"
+        class="bar-input"
+        auto-complete
+        auto-complete-placeholder="Language 2..."
+        min-chars="0"
+        [list-formatter]="myListFormatter"
+        select-value-of="language_name"
+        [(ngModel)]="searchParams.data.lang2"
+        (keyup.enter)="searchByLanguages()"
+        [source]="mySource"
+        accept-user-input="false"
+        tab-to-select="true"
+        (valueChanged)="myCallback($event, 'lang2')">
+  </div>
+
+  <div class="col-xs-12 text-right">
+    <br>
+    <button id="search-button"
+      md-raised-button
+      (click)="searchByLanguages()"
+      [disabled]="!searchParams.data.lang1 || !searchParams.data.lang2">Search by {{searchParams.data.lang1}} &amp; {{searchParams.data.lang2}}</button>
+  </div>
+
+  <div class="col-xs-12">
+    <hr class="base-hr">
+    <h3>Search by Term</h3>
+    <br>
+    <label for="term">Please type a word to search for:</label>
+    <input type="text"
+      name="term"
+      class="bar-input"
+      maxlength="100"
+      (keyup.enter)="searchByTerm()"
+      [(ngModel)]="searchParams.term">
+  </div>
+
+  <div class="col-xs-12 text-right">
+      <br>
+      <button id="search-button"
+        md-raised-button
+        (click)="searchByTerm()"
+        [disabled]="!searchParams.term">Search by Term</button>
+  </div>
+
+</div>

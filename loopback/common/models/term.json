@@ -1,0 +1,49 @@
+{
+  "name": "term",
+  "plural": "terms",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "lang1": {
+      "type": "string",
+      "required": true
+    },
+    "word1": {
+      "type": "string",
+      "required": true
+    },
+    "meaning1": {
+      "type": "string",
+      "required": true
+    },
+    "lang2": {
+      "type": "string",
+      "required": true
+    },
+    "word2": {
+      "type": "string",
+      "required": true
+    },
+    "meaning2": {
+      "type": "string"
+    },
+    "reg_date": {
+      "type": "date",
+      "required": true
+    },
+    "term_status": {
+      "type": "string"
+    },
+    "used_id": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

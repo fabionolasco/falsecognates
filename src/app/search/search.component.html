@@ -1,0 +1,61 @@
+<div class="search">
+
+  <div class="row">
+
+    <div class="col-xs-12">
+
+      <ul class="breadcrumbs nopadding">
+        <li><a routerLink="/">Homepage</a></li>
+        <li>/</li>
+        <li>Search Page</li>
+      </ul>
+
+      <br>
+
+      <h3 *ngIf="term && term.length > 0">
+        {{SearchService.count}} False Cognate<span *ngIf="SearchService.count !== 1" >s</span> found for "{{term}}"
+        <br>&nbsp;
+      </h3>
+
+      <h6 *ngIf="lang2 && lang2.length > 0">
+        {{lang1}} &amp; {{lang2}}
+      </h6>
+
+      <h3 *ngIf="lang2 && lang2.length > 0">
+        {{SearchService.count}} False Cognate<span *ngIf="SearchService.count !== 1" >s</span> found
+        <span *ngIf="SearchService.count <= SearchService.itemsPerPage"><br>&nbsp;</span>
+      </h3>
+
+      <div *ngIf="lang1 && lang2.length > 0 && SearchService.count > SearchService.itemsPerPage">
+        <hr class="base-hr">
+        <div class="pagination">
+          <ul class="hidden-xs-up">
+            <li *ngFor="let item of SearchService.pagesRange | paginate: { itemsPerPage: 1, currentPage: SearchService.thisPage }"></li>
+          </ul>
+          <pagination-controls
+            (pageChange)="changePage($event)"
+            maxSize="9"
+            screenReaderPageLabel="page"
+            screenReaderCurrentLabel="You're on page"
+            #api>
+          </pagination-controls>
+        </div>
+        <hr class="base-hr">
+      </div>
+
+      <div *ngIf="(!lang1 || lang1.length <= 0) && (!term || term.length <= 0)">
+        <app-search-bar></app-search-bar>
+        <hr class="base-hr">
+      </div>
+
+      <div class="terms" *ngIf="lang1 && lang1.length > 0 || term && term.length > 0">
+        <app-terms source="search"></app-terms>
+      </div>
+
+      <!-- app-search-bar></app-search-bar -->
+
+    </div>
+
+  </div>
+
+</div>

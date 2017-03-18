@@ -1,0 +1,31 @@
+  <div #banner class="banner" [ngClass]="classMap"></div>
+
+  <div class="row hero" [ngClass]="classMap"
+  [class.hero-small]="_HeaderService.headerSize === 'small'"
+  [class.hero-not-small]="_HeaderService.headerSize !== 'small'">
+    <div class="hero-content">
+
+      <h1 routerLink="/">False Cognates</h1>
+      <div class="description">
+        <h2 class="hero-h2">
+          False cognates are pair of words, either between different languages or within the same language, that sounds similar but have different meanings and/or different roots.
+        </h2>
+        <span class="hero-h2">For a more precise definition please refer to:</span>
+        <br>
+        <a href="https://en.wikipedia.org/wiki/False_cognate" target="_blank">Wikipedia</a>
+        &nbsp;&nbsp;
+        <a href="http://www.macmillandictionary.com/us/dictionary/american/false-cognate" target="_blank">McMillan Dictionary</a>
+      </div>
+    </div>
+
+    <div class="hero-icons hidden-sm-down">
+      <!--span class="hero-h2">Login with: <br></span>
+      <a href="http://ec2-54-161-34-195.compute-1.amazonaws.com/api/v2/user/session?service=facebook-oauth-false-cognates" alt="Login with Facebook" class="no-underline">
+        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+      </a>
+      <a href="http://ec2-54-161-34-195.compute-1.amazonaws.com/api/v2/user/session?service=google-oauth-false-cognates" alt="Login with Google" class="no-underline">
+        <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+      </a-->
+    </div>
+
+  </div>

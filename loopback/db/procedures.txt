@@ -1,0 +1,113 @@
+DELIMITER //
+drop procedure if exists topTerms;//
+CREATE PROCEDURE `topTerms` ()
+BEGIN
+
+SELECT * FROM (
+  SELECT term.*, SUM(vote.vote_value) AS vote_count FROM term
+  LEFT JOIN vote ON term.id=vote.term_id
+  WHERE (((term.term_status IS NULL) OR (term.term_status IS NOT NULL AND term.term_status NOT LIKE '%x%')) )
+  GROUP BY term.id
+  ORDER BY vote_count DESC
+) AS sub
+WHERE sub.vote_count IS NULL OR sub.vote_count >= -3
+LIMIT 0, 30;
+
+END//
+DELIMITER ;
+
+;;;;;;;;;;;;;;;;;;;;;;
+
+CALL topTerms();
+
+;;;;;;;;;;;;;;;;;;;;;;
+
+DELIMITER //
+drop procedure if exists getTermsByLanguageAndId;//
+CREATE PROCEDURE getTermsByLanguageAndId (l1 varchar(100), l2 varchar(100), idX INT, startVal INT, numRows INT)
+BEGIN
+
+SELECT sub.*, vote.vote_value FROM (
+  SELECT term.*, SUM(vote.vote_value) AS vote_count FROM term
+  LEFT JOIN vote ON term.id=vote.term_id
+  WHERE (((term.lang1 = l1 AND term.lang2 = l2) OR (term.lang2 = l1 AND term.lang1 = l2)) AND (term.term_status IS NULL OR term.term_status NOT LIKE '%x%'))
+  GROUP BY term.id
+  ORDER BY vote_count DESC
+) AS sub
+LEFT JOIN vote ON vote.term_id = sub.id AND vote.user_id = idX
+WHERE (sub.vote_count IS NULL OR sub.vote_count >= -3)
+ORDER BY sub.vote_count DESC
+LIMIT startVal, numRows;
+
+END//
+DELIMITER ;
+
+
+;;;;;;;;;;;;;;;;;;;;;;
+
+DELIMITER //
+drop procedure if exists getTermsByLanguage;//
+CREATE PROCEDURE `getTermsByLanguage` (l1 varchar(100), l2 varchar(100), startVal INT, numRows INT)
+BEGIN
+
+SELECT sub.*, 0 AS vote_value FROM (
+  SELECT term.*, SUM(vote.vote_value) AS vote_count FROM term
+  LEFT JOIN vote ON term.id=vote.term_id
+  WHERE (((term.lang1 = l1 AND term.lang2 = l2) OR (term.lang2 = l1 AND term.lang1 = l2)) AND (term.term_status IS NULL OR term.term_status NOT LIKE '%x%'))
+  GROUP BY term.id
+  ORDER BY vote_count DESC
+) AS sub
+LEFT JOIN vote ON vote.term_id = sub.id
+WHERE (sub.vote_count IS NULL OR sub.vote_count >= -3)
+GROUP BY sub.id
+ORDER BY sub.vote_count DESC
+LIMIT startVal, numRows;
+
+END//
+DELIMITER ;
+
+
+;;;;;;;;;;;;;;;;;;;;;;
+
+
+DELIMITER //
+drop procedure if exists countTermsByLanguage;//
+CREATE PROCEDURE `countTermsByLanguage` (l1 varchar(100), l2 varchar(100))
+BEGIN
+
+SELECT COUNT(sub.id) as totalTerms FROM (
+   SELECT term.*, SUM(vote.vote_value) AS vote_count FROM term
+   LEFT JOIN vote ON term.id=vote.term_id
+   WHERE (((term.lang1 = l1 AND term.lang2 = l2) OR (term.lang2 = l1 AND term.lang1 = l2)) AND (term.term_status IS NULL OR term.term_status NOT LIKE '%x%'))
+   GROUP BY term.id
+) AS sub
+WHERE sub.vote_count IS NULL OR sub.vote_count >= -3;
+
+END//
+DELIMITER ;
+
+
+;;;;;;;;;;;;;;;;;;;;;;
+
+
+DELIMITER //
+drop procedure if exists getTermsByTermName; //
+CREATE PROCEDURE `getTermsByTermName` (termVal varchar(100))
+BEGIN
+
+SELECT sub.* FROM (
+  SELECT term.*, SUM(vote.vote_value) AS vote_count
+  FROM term
+  LEFT JOIN vote ON term.id=vote.term_id
+  WHERE ((term.word1 = termVal OR term.word2 = termVal) AND ((term.term_status IS NULL) OR (term.term_status IS NOT NULL AND term.term_status NOT LIKE '%x%')))
+  GROUP BY term.id
+  ORDER BY vote_count DESC
+) AS sub
+WHERE sub.vote_count IS NULL OR sub.vote_count >= -3
+LIMIT 0, 100;
+
+END //
+DELIMITER ;
+
+
+;;;;;;;;;;;;;;;;;;;;;;
