@@ -9,6 +9,8 @@ import { HttpService } from './http.service';
 @Injectable()
 export class TermsService {
 
+  public results;
+
   constructor(
     private _http: Http,
     private _httpService: HttpService,

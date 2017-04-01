@@ -15,6 +15,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ResultsComponent } from './results/results.component';
 import { SearchComponent } from './search/search.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -65,6 +66,7 @@ export const Components = [
   LoginComponent,
   NewPasswordComponent,
   NotFoundComponent,
+  ResultsComponent,
   SearchComponent,
   SearchBarComponent,
   SidebarComponent,

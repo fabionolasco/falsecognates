@@ -35,7 +35,7 @@ export class LanguagesService {
 
     this._http.post(url, {})
         .subscribe(function(response: Response){
-          console.log('attempt call', response);
+          // console.log('attempt call', response);
         });
   }
 

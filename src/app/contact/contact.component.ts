@@ -64,7 +64,7 @@ export class ContactComponent implements OnInit {
           )
           .toPromise()
           .then(function(response: Response){
-            console.log('Message: ', response);
+            // console.log('Message: ', response);
             return response;
           });
       }

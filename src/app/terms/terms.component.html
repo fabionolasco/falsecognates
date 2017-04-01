@@ -1,43 +1,37 @@
-<div *ngIf="terms && terms.length > 0" >
+<div *ngIf="item">
 
-  <div *ngFor="let item of terms">
-
-    <md-card>
-      <div class="card-block card-left">
-          <md-card-header>
-            <md-card-title>{{item.word1}}</md-card-title>
-            <md-card-subtitle><a href="">{{item.lang1}}</a></md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
-            <p>{{item.meaning1}}</p>
-          </md-card-content>
-      </div>
-      <div class="card-block card-right">
-          <md-card-header>
-            <md-card-title>{{item.word2}}</md-card-title>
-            <md-card-subtitle><a href="">{{item.lang2}}</a></md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
-            <p>{{item.meaning2}}</p>
-          </md-card-content>
-      </div>
-      <md-card-actions>
-            <button md-button
-              [class.selected]="item.vote_value && item.vote_value == 1"
-              (click)="voteNow(1, item.id)">
-              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-            </button>
-            <span>({{item.vote_count}})</span>
-            <button md-button
-              [class.selected]="item.vote_value && item.vote_value == -1"
-              (click)="voteNow(-1, item.id)">
-              <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-            </button>
-      </md-card-actions>
-    </md-card>
-
-    <br>
-
-  </div>
+  <md-card>
+    <div class="card-block card-left">
+        <md-card-header>
+          <md-card-title>{{item.word1}}</md-card-title>
+          <md-card-subtitle><a href="">{{item.lang1}}</a></md-card-subtitle>
+        </md-card-header>
+        <md-card-content>
+          <p>{{item.meaning1}}</p>
+        </md-card-content>
+    </div>
+    <div class="card-block card-right">
+        <md-card-header>
+          <md-card-title>{{item.word2}}</md-card-title>
+          <md-card-subtitle><a href="">{{item.lang2}}</a></md-card-subtitle>
+        </md-card-header>
+        <md-card-content>
+          <p>{{item.meaning2}}</p>
+        </md-card-content>
+    </div>
+    <md-card-actions>
+          <button md-button
+            [class.selected]="item.vote_value && item.vote_value == 1"
+            (click)="voteNow(1, item.id)">
+            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+          </button>
+          <span>({{item.vote_count}})</span>
+          <button md-button
+            [class.selected]="item.vote_value && item.vote_value == -1"
+            (click)="voteNow(-1, item.id)">
+            <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+          </button>
+    </md-card-actions>
+  </md-card>
 
 </div>

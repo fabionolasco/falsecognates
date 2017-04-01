@@ -9,7 +9,7 @@ export class SidebarService {
 
   constructor() {
     this.smallScreen = window.innerWidth < 768;
-    console.log(this.smallScreen,  window.innerWidth);
+    // console.log(this.smallScreen,  window.innerWidth);
     if (!this.windowListen) {
       this.windowListen = true;
       window.addEventListener('resize', ()  => this.smallScreen = window.innerWidth < 768);

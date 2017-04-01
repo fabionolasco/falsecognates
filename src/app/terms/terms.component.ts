@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { TermsService } from '../commons/terms.service';
 import { UserService } from '../commons/user.service';
 import { MessagesService } from '../commons/messages.service';
 import { VotesService } from '../commons/vote.service';
-import { SearchService } from '../commons/search.service';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-terms',
@@ -13,38 +12,52 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 })
 export class TermsComponent implements OnInit {
 
-  public terms;
-  public votes;
-  public count;
-  public userId;
-  public totalRecords;
-  public currentPage;
-  public totalPages;
-  public itemsPerPage;
-  public routeSubs;
+  private _userId;
+  private _initialVoteCount: number|null = null;
+  private _initialVoteValue: number|null = null;
 
-  @Input() source: string;
+  @Input('item') item;
 
   constructor(
-    private _termsService: TermsService,
     private _userService: UserService,
     private _messagesService: MessagesService,
     private _router: Router,
-    private _route: ActivatedRoute,
-    private _searchService: SearchService,
     private _votesService: VotesService
   ) {
-    this.itemsPerPage = this._searchService.itemsPerPage;
-
-    this.routeSubs = this._router.events.subscribe((route) => {
-        if (route instanceof NavigationEnd) {
-          this.search();
-        }
-    });
+    this._userId = localStorage.getItem('usedId');
   }
 
+  ngOnInit() {
+    setTimeout(() => {
+      console.log('this.item', this._initialVoteCount, this._initialVoteValue);
+    }, 2000);
+  }
+
+  // Verify if user can vote
+  canVote(): boolean {
+    if (!this._userService.isLoggedIn()) {
+      this._messagesService.message = 'Please Log In or Register to vote!';
+      this._messagesService.type = 'alert-warning';
+      this._messagesService.hasMessage = this._router.url;
+      this._router.navigate(['/login']);
+      return false;
+    }
+    return true;
+  }
+
+  getInitialValue() {
+    if (this._initialVoteCount === null) {
+      this._initialVoteCount = this.item.vote_count === null ? 0 : this.item.vote_count;
+    }
+    if (this._initialVoteValue === null) {
+      this._initialVoteValue = this.item.vote_value === null ? 0 : this.item.vote_value;
+    }
+  }
+
+  // Send Vote Now
   voteNow(vote_value: number, fcognate_id: number): void {
-    if (!this.userId) {
+    this.getInitialValue();
+    if (!this._userId) {
       this._router.navigate(['/login']);
       this._messagesService.message = 'Please Log In or Register to vote!';
     }
@@ -56,7 +69,12 @@ export class TermsComponent implements OnInit {
       let subs = this._votesService.sendVote(formValues)
         .subscribe(
           (data) => {
-            this.recountVotes();
+            console.log('this._initialVoteCount', this._initialVoteCount);
+            console.log('this._initialVoteValue', this._initialVoteValue);
+            console.log('vote_value', vote_value);
+            this.item.vote_count = (this._initialVoteCount - this._initialVoteValue) + vote_value;
+            console.log('this.item.vote_count', this.item.vote_count);
+            this._votesService.voted.next(new Date());
             subs.unsubscribe();
           },
           (err) => {
@@ -64,169 +82,6 @@ export class TermsComponent implements OnInit {
           }
         );
     }
-  }
-
-  canVote(): boolean {
-    if (!this._userService.isLoggedIn()) {
-      this._router.navigate(['/login']);
-      this._messagesService.message = 'Please Log In or Register to vote!';
-      return false;
-    }
-    return true;
-  }
-
-  checkVote(term_id): number {
-    let result = 0;
-    this.votes.forEach((vote) => {
-      if (vote.term_id === term_id) {
-        result = vote.vote_value;
-      }
-    });
-    return result;
-  }
-
-  checkTerm(): void {
-    // Change terms inside Term Array, and add vote value
-    if (this.votes && this.votes.length > 0) {
-      this.terms.forEach((term) => {
-        if (!this.userId) {
-          term.vote_value = 0;
-        } else {
-          let voteValue = this.checkVote(term.id);
-          term.vote_value = this.checkVote(term.id);
-        }
-      });
-    }
-  }
-
-  countTermsByLanguage() {
-    let searchParams = {
-      lang1: this._route.url['_value'][1].path,
-      lang2: this._route.url['_value'][2].path
-    };
-    this._searchService.countTermsByLanguage(searchParams)
-      .subscribe(
-        (data) => {
-          this._searchService.count = JSON.parse(data['_body'])[0][0]['totalTerms'];
-        }
-      );
-  }
-
-  recountVotes() {
-    // Get Votes
-    if (this.userId) {
-      let termsIds = [];
-      this.terms.forEach((term) => {
-        termsIds.push(term.id);
-      });
-      let subsVote = this._votesService.getVotes(termsIds)
-        .subscribe(
-          (resp) => {
-            this.votes = JSON.parse(resp['_body']);
-            this.checkTerm();
-            subsVote.unsubscribe();
-          }
-        );
-    }
-  }
-
-  homePageTopTerms() {
-    let subsTerms = this._termsService.getTopTerms()
-      .subscribe(
-        (resp) => {
-          this.terms = JSON.parse(resp['_body'])[0];
-          this.recountVotes();
-          subsTerms.unsubscribe();
-        }
-      );
-  }
-
-  pagesRange(start, end) {
-    const range = Array.from({length: ((end + 1) - start)}, (v, k) => k + start);
-    return range;
-  }
-
-  searchByLanguages() {
-    // Search By Languages
-    const currentPage = this._route.url['_value'].length >= 4 ? parseInt(this._route.url['_value'][3].path, 10) : 1;
-    let startPoint = (currentPage * this._searchService.itemsPerPage) - this._searchService.itemsPerPage;
-    this.terms = this._searchService.results;
-    this.countTermsByLanguage();
-    let searchParams = {
-      lang1: this._route.url['_value'][1].path,
-      lang2: this._route.url['_value'][2].path,
-      start: startPoint,
-      numRows: this.itemsPerPage
-    };
-    // searchByLanguagesUserId
-    if (this.userId) {
-      let subs = this._searchService.searchByLanguagesUserId(searchParams)
-        .subscribe(
-          (data) => {
-            this._searchService.results = JSON.parse(data['_body'])[0];
-            this.terms = this._searchService.results;
-            this._searchService.totalPages = Math.ceil(this._searchService.count / this._searchService.itemsPerPage);
-            this._searchService.pagesRange = this.pagesRange(1, this._searchService.totalPages);
-            this.recountVotes();
-            subs.unsubscribe();
-          }
-        );
-    } else {
-      // searchByLanguages without user id
-      let subs = this._searchService.searchByLanguages(searchParams)
-        .subscribe(
-          (data) => {
-            this._searchService.results = JSON.parse(data['_body'])[0];
-            this.terms = this._searchService.results;
-            this._searchService.totalPages = Math.ceil(this._searchService.count / this._searchService.itemsPerPage);
-            this._searchService.pagesRange = this.pagesRange(1, this._searchService.totalPages);
-            this.recountVotes();
-            subs.unsubscribe();
-          }
-        );
-    }
-  }
-
-  searchByTerm() {
-    let searchParams = {
-      termVal: this._route.url['_value'][1].path
-    };
-    let subs = this._searchService.searchByTerm(searchParams)
-      .subscribe(
-        (data) => {
-          this._searchService.results = JSON.parse(data['_body'])[0];
-          this.terms = this._searchService.results;
-          this._searchService.count = this.terms.length;
-          this.recountVotes();
-          subs.unsubscribe();
-        }
-      );
-  }
-
-  search(){
-    // Get ID
-    this.userId = localStorage.getItem('usedId');
-    // Get Top Terms - Homepage
-    if (this.source === 'top') {
-      this.homePageTopTerms();
-    } else {
-      // Get search results by language
-      if (this._route.url['_value'].length >= 3) {
-        this.searchByLanguages();
-      } else
-      // Get search results by term
-      // this._router[1].split('/')[1] === 'search-term' &&
-      if (this._route.url['_value'].length === 2) {
-        this.searchByTerm();
-      } else {
-        this._router.navigate(['']);
-      }
-    }
-  }
-
-
-  ngOnInit() {
-    this.search();
   }
 
 }

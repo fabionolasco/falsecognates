@@ -34,7 +34,7 @@ export class NewPasswordComponent implements OnInit {
         .subscribe(
           (data) => {
             this.clearPassData();
-            console.log(data);
+            // console.log(data);
           }
         );
       // Security Through Obscurity
