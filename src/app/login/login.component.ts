@@ -7,7 +7,7 @@ import { MessagesService } from '../commons/messages.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
   }
 
   sendLogin() {
-    console.log('Trying to log in...');
     if (this.loginData.security.length > 0) {
       return this.cancelProcess('');
     } else {
@@ -55,7 +54,6 @@ export class LoginComponent implements OnInit {
           .subscribe((data) => {
 
               // Login Worked, store token
-              console.log('Login worked', data);
               this.cleanModels();
               localStorage.setItem('session_status', 'valid');
               this._userService.storeToken(data['_body']);
@@ -80,7 +78,6 @@ export class LoginComponent implements OnInit {
   }
 
   sendRegistration() {
-    console.log('Trying to register...');
     if (this.registerData.security.length > 0) {
       return this.cancelProcess('');
     } else
@@ -100,12 +97,9 @@ export class LoginComponent implements OnInit {
         this.registerData.confirm = '';
         this._userService.register(this.registerData)
           .subscribe((response) => {
-              console.log('Register worked', response);
               this.loginData.email = this.registerData.email;
               this.loginData.password = this.registerData.password;
               this.sendLogin();
-              // this.cleanModels();
-              // this._userService.storeToken(response.json());
           }, (error) => {
               this.cleanModels();
               this.cancelProcess(error.json().error.message);

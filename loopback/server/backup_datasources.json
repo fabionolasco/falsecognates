@@ -5,7 +5,7 @@
   },
   "mysqlDs": {
     "host": "MY_IP",
-    "port": 3306,
+    "port": 123,
     "url": "",
     "database": "DATABASE_NAME",
     "password": "PASSWORD",
@@ -14,21 +14,9 @@
     "connector": "mysql",
     "createDatabase": true
   },
-  "myEmailDataSource": {
-    "name": "myEmailDataSource",
-    "connector": "mail",
-    "transports": [{
-      "type": "smtp",
-      "host": "smtp.falsecognates.com",
-      "secure": false,
-      "port": 25,
-      "tls": {
-        "rejectUnauthorized": false
-      },
-      "auth": {
-        "user": "USERNAME",
-        "pass": "PASSWORD"
-      }
-    }]
+  "mailgun": {
+      "connector": "loopback-connector-mailgun",
+      "apikey": "123",
+      "domain": "falsecognates.com"
   }
 }

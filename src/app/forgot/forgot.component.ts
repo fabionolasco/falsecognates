@@ -5,7 +5,7 @@ import { ForgotService } from './forgot.service';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
-  styleUrls: ['./forgot.component.css']
+  styleUrls: ['./forgot.component.scss']
 })
 export class ForgotComponent implements OnInit {
 
@@ -17,12 +17,20 @@ export class ForgotComponent implements OnInit {
   constructor(public MessagesService: MessagesService, private _forgotService: ForgotService) { }
 
   sendForgotMessage() {
-    this._forgotService.sendForgotRequest({})
-      .subscribe(
-        () => {
-          this.forgotData.email = '';
-        }
-      );
+    if (!this.forgotData.security) {
+      let data = {email: this.forgotData.email};
+      this._forgotService.sendForgotRequest(data)
+        .subscribe(
+          () => { this.forgotData.email = ''; },
+          () => { this.forgotData.email = ''; }
+        );
+    }
+    // Security Through Obscurity
+    // Give Success even if fake security field is filled
+    this.success();
+  }
+
+  success() {
     this.MessagesService.type = 'alert-success';
     this.MessagesService.message = 'Instructions on how to reset your password was sent to your email.';
   }

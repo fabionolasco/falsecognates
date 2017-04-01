@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # Create a cron job that will run every 1 min
-# vi /etc/crontab
+# crontab -e
 # */1 * * * * /fcognates/app/loopback/scripts/cron.sh
 # service crond restart
 
-if ps -ef | grep loopback/server/server.js ; then
+if forever list | grep server; then
         echo "Already running loopback.";
         exit 0
 else

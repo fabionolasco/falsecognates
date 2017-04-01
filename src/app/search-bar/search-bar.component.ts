@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { LanguagesService } from '../commons/languages.service';
 import { MessagesService } from '../commons/messages.service';
 import { Router } from '@angular/router';
@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+  styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnInit, AfterViewInit {
+export class SearchBarComponent implements OnInit {
 
   public mySource: Array<string> = [];
   public canSearch: number = 0;
@@ -31,20 +31,6 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
     if (!this.LanguagesService.searchForLanguage(this.searchParams.data.lang2)) {
       this.searchParams.data.lang2 = '';
     }
-  }
-
-  myCallback(data: any, lang: string): void {
-    console.log(typeof data, data);
-    // if (!this.LanguagesService.searchForLanguage(data)) {
-    //   this.searchParams.data[lang] = '';
-    // } else {
-    //   console.log(data, lang, this.searchParams);
-    //     if (lang === 'lang1') {
-    //       document.getElementById('myDataField2').focus();
-    //     } else if (lang === 'lang2') {
-    //       document.getElementById('search-button').focus();
-    //     }
-    // }
   }
 
   searchByTerm() {
@@ -87,15 +73,10 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
     return `<strong>${data['language_name']}</strong>(${data['native_name']})`;
   }
 
-  ngAfterViewInit() {
-    // this.lang1.first.nativeElement.focus();
-  }
-
   ngOnInit() {
     this.LanguagesService
       .getLanguages()
       .then(data => {
-        console.log(data);
         this.mySource = data;
       });
   }

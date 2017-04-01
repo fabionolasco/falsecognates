@@ -1,15 +1,21 @@
-<div class="history">
+<div class="history basic-page">
+
   <ul class="breadcrumbs nopadding">
     <li><a routerLink="/">Homepage</a></li>
     <li>/</li>
     <li>History</li>
   </ul>
+
   <h3>Your Search History</h3>
+
   <p>
     List of your last 10 searches.
   </p>
+
   <hr class="base-hr">
+
   <h6>Search by Languages:</h6>
+
   <ol>
     <li *ngFor="let lang of sLangs.languages">
       <a routerLink="/search-languages/{{lang.lang1.language_name}}/{{lang.lang2.language_name}}">
@@ -17,11 +23,15 @@
       </a>
     </li>
   </ol>
+
   <hr class="base-hr">
+
   <h6>Search by Terms:</h6>
+
   <ol>
     <li *ngFor="let term of sTerms.terms">
       <a routerLink="/search-term/{{term}}">{{term}}</a>
     </li>
   </ol>
+
 </div>

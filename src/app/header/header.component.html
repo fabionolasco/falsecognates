@@ -1,8 +1,9 @@
   <div #banner class="banner" [ngClass]="classMap"></div>
 
   <div class="row hero" [ngClass]="classMap"
-  [class.hero-small]="_HeaderService.headerSize === 'small'"
-  [class.hero-not-small]="_HeaderService.headerSize !== 'small'">
+    [class.hero-small]="_HeaderService.headerSize === 'small'"
+    [class.hero-not-small]="_HeaderService.headerSize !== 'small'">
+
     <div class="hero-content">
 
       <h1 routerLink="/">False Cognates</h1>
@@ -19,13 +20,7 @@
     </div>
 
     <div class="hero-icons hidden-sm-down">
-      <!--span class="hero-h2">Login with: <br></span>
-      <a href="http://ec2-54-161-34-195.compute-1.amazonaws.com/api/v2/user/session?service=facebook-oauth-false-cognates" alt="Login with Facebook" class="no-underline">
-        <i class="fa fa-facebook-official" aria-hidden="true"></i>
-      </a>
-      <a href="http://ec2-54-161-34-195.compute-1.amazonaws.com/api/v2/user/session?service=google-oauth-false-cognates" alt="Login with Google" class="no-underline">
-        <i class="fa fa-google-plus-square" aria-hidden="true"></i>
-      </a-->
+      <!-- To Do: Add Social Icons -->
     </div>
 
   </div>

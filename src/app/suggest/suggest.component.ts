@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguagesService } from '../commons/languages.service';
 import { UserService } from '../commons/user.service';
-import { HeaderService } from '../header/header.service';
+import { HeaderService } from '../commons/header.service';
 import { SuggestService } from './suggest.service';
 
 @Component({
   selector: 'app-suggest',
   templateUrl: './suggest.component.html',
-  styleUrls: ['./suggest.component.css']
+  styleUrls: ['./suggest.component.scss']
 })
 export class SuggestComponent implements OnInit {
 
@@ -15,14 +15,7 @@ export class SuggestComponent implements OnInit {
   public alertMessage = '';
   public successMessage = '';
   public canSubmit = true;
-  public data = {
-    lang1: '',
-    lang2: '',
-    word1: '',
-    word2: '',
-    meaning1: '',
-    meaning2: ''
-  };
+  public data;
 
   constructor(
     private _LanguagesService: LanguagesService,
@@ -31,9 +24,25 @@ export class SuggestComponent implements OnInit {
     private _SuggestService: SuggestService
   ) {
     this._HeaderService.headerSize = 'small';
-    if (this._SuggestService.storedData) {
-      this.data = this._SuggestService.storedData;
+    // Prepare Suggestion Data
+    this.cleanModels();
+    // Brings data back if not submited yet
+    let data = this._SuggestService.getTmpData();
+    if (data) {
+      this.data = data;
     }
+  }
+
+  ngOnInit() {
+    this._LanguagesService
+      .getLanguages()
+      .then(data => {
+        this.mySource = data;
+      });
+  }
+
+  storeTmpData() {
+      this._SuggestService.storeTmpData(this.data);
   }
 
   capitalize(w: string) {
@@ -44,6 +53,9 @@ export class SuggestComponent implements OnInit {
   }
 
   submitFalseCognate() {
+    if (!this.data.accepted) {
+      this.alertMessage = 'You need to accept our Terms and Agreements to submit content to the website.';
+    } else
     if (!this._LanguagesService.searchForLanguage(this.data.lang1)) {
       this.alertMessage = 'Please select a correct language.';
       this.data.lang1 = '';
@@ -64,28 +76,27 @@ export class SuggestComponent implements OnInit {
     if (!this.data.meaning2 || this.data.meaning2.length < 1) {
       this.alertMessage = 'Please select a valid definition.';
     } else {
-      console.log('this.data == ', this.data);
       let tmpData = Object.assign({}, this.data);
       this.canSubmit = false;
       this._SuggestService.sendSuggestion(tmpData)
         .subscribe((data) => {
-            console.log('Submited content', data);
             this.cleanModels();
             this._SuggestService.clearAll();
             this.successMessage = 'Awesome! Thank you for your collaboration!';
-            document.body.scrollTop = 0;
-          }, (error) => {
             this.canSubmit = true;
+          }, (error) => {
             this.alertMessage = error.json().error.message;
             this._UserService.logout();
-            document.body.scrollTop = 0;
+            this.canSubmit = true;
           });
     }
+    document.body.scrollTop = 0;
   }
 
   cleanModels() {
     this.canSubmit = true;
     this.data = {
+      accepted: false,
       lang1: '',
       lang2: '',
       word1: '',
@@ -97,14 +108,6 @@ export class SuggestComponent implements OnInit {
 
   myListFormatter(data: any): string {
     return `<strong>${data['language_name']}</strong>(${data['native_name']})`;
-  }
-
-  ngOnInit() {
-    this._LanguagesService
-      .getLanguages()
-      .then(data => {
-        this.mySource = data;
-      });
   }
 
 }

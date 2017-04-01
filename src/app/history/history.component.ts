@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from '../header/header.service';
+import { HeaderService } from '../commons/header.service';
 
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
 

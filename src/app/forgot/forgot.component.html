@@ -1,4 +1,4 @@
-<div class="forgot">
+<div class="forgot basic-page">
 
   <div class="row">
 
@@ -10,6 +10,8 @@
       </ul>
     </div>
 
+    &nbsp;<br>
+
     <div class="col-xs-12" *ngIf="MessagesService.message.length > 0">
       &nbsp;<br>
       <div class="alert" [ngClass]="MessagesService.type" role="alert">
@@ -20,6 +22,8 @@
     <form class="col-xs-12 col-lg-6">
 
       <h3>Forgot Password?</h3>
+
+      <br>
 
       <input #forgotSecurity type="text" name="forgot-security" class="security" [(ngModel)]="forgotData.security">
 

@@ -9,7 +9,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-terms',
   templateUrl: './terms.component.html',
-  styleUrls: ['./terms.component.css']
+  styleUrls: ['./terms.component.scss']
 })
 export class TermsComponent implements OnInit {
 
@@ -60,7 +60,6 @@ export class TermsComponent implements OnInit {
             subs.unsubscribe();
           },
           (err) => {
-            console.log('Voted err', formValues, err);
             subs.unsubscribe();
           }
         );
@@ -114,7 +113,6 @@ export class TermsComponent implements OnInit {
   }
 
   recountVotes() {
-    console.log('this.userId', this.userId);
     // Get Votes
     if (this.userId) {
       let termsIds = [];
@@ -152,8 +150,6 @@ export class TermsComponent implements OnInit {
     // Search By Languages
     const currentPage = this._route.url['_value'].length >= 4 ? parseInt(this._route.url['_value'][3].path, 10) : 1;
     let startPoint = (currentPage * this._searchService.itemsPerPage) - this._searchService.itemsPerPage;
-    console.log('currentPage', currentPage);
-    console.log('startPoint', startPoint);
     this.terms = this._searchService.results;
     this.countTermsByLanguage();
     let searchParams = {
@@ -162,7 +158,6 @@ export class TermsComponent implements OnInit {
       start: startPoint,
       numRows: this.itemsPerPage
     };
-    console.log('langs searchParams == ', searchParams);
     // searchByLanguagesUserId
     if (this.userId) {
       let subs = this._searchService.searchByLanguagesUserId(searchParams)
@@ -172,7 +167,6 @@ export class TermsComponent implements OnInit {
             this.terms = this._searchService.results;
             this._searchService.totalPages = Math.ceil(this._searchService.count / this._searchService.itemsPerPage);
             this._searchService.pagesRange = this.pagesRange(1, this._searchService.totalPages);
-            console.log('results ', this.terms, data);
             this.recountVotes();
             subs.unsubscribe();
           }
@@ -186,7 +180,6 @@ export class TermsComponent implements OnInit {
             this.terms = this._searchService.results;
             this._searchService.totalPages = Math.ceil(this._searchService.count / this._searchService.itemsPerPage);
             this._searchService.pagesRange = this.pagesRange(1, this._searchService.totalPages);
-            console.log('results ', this.terms, data);
             this.recountVotes();
             subs.unsubscribe();
           }
@@ -198,14 +191,12 @@ export class TermsComponent implements OnInit {
     let searchParams = {
       termVal: this._route.url['_value'][1].path
     };
-    console.log('term searchParams == ', searchParams);
     let subs = this._searchService.searchByTerm(searchParams)
       .subscribe(
         (data) => {
           this._searchService.results = JSON.parse(data['_body'])[0];
           this.terms = this._searchService.results;
           this._searchService.count = this.terms.length;
-          console.log('results ', this.terms);
           this.recountVotes();
           subs.unsubscribe();
         }
@@ -221,13 +212,11 @@ export class TermsComponent implements OnInit {
     } else {
       // Get search results by language
       if (this._route.url['_value'].length >= 3) {
-        console.log('Searchi by languages', this._route);
         this.searchByLanguages();
       } else
       // Get search results by term
       // this._router[1].split('/')[1] === 'search-term' &&
       if (this._route.url['_value'].length === 2) {
-        console.log('Searchi by term', this._route);
         this.searchByTerm();
       } else {
         this._router.navigate(['']);

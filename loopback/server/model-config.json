@@ -20,6 +20,13 @@
       "emailVerificationRequired": false
     }
   },
+  "user": {
+    "dataSource": "mysqlDs",
+    "public": true,
+    "options": {
+      "emailVerificationRequired": false
+    }
+  },
   "AccessToken": {
     "dataSource": "mysqlDs",
     "public": false
@@ -35,8 +42,9 @@
       "strictObjectIDCoercion": true
     }
   },
-  "email": {
-    "dataSource": "myEmailDataSource"
+  "Email": {
+      "dataSource": "mailgun",
+      "public": false
   },
   "Role": {
     "dataSource": "mysqlDs",

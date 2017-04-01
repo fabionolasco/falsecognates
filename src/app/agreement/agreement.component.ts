@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from '../header/header.service';
+import { HeaderService } from '../commons/header.service';
 
 @Component({
   selector: 'app-agreement',
   templateUrl: './agreement.component.html',
-  styleUrls: ['./agreement.component.css']
+  styleUrls: ['./agreement.component.scss']
 })
 export class AgreementComponent implements OnInit {
 

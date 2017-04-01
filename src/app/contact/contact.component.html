@@ -1,17 +1,21 @@
+<div class="contact basic-page">
 
-<div class="contact">
   <ul class="breadcrumbs nopadding">
     <li><a routerLink="/">Homepage</a></li>
     <li>/</li>
     <li>Contact</li>
   </ul>
+
   <h3>Contact Form</h3>
+
   <div class="alert alert-success" role="alert" *ngIf="successMessage">
     {{successMessage}}
   </div>
+
   <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
     {{errorMessage}}
   </div>
+
   <form #contactForm novalidate>
     <div class="form-group">
       <label for="name">Name:</label>
@@ -42,4 +46,5 @@
       (click)="sendMessage(contactForm)">Submit Message</button>
     </div>
   </form>
+
 </div>

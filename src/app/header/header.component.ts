@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HeaderService } from './header.service';
+import { HeaderService } from '../commons/header.service';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
 
@@ -18,32 +18,30 @@ export class HeaderComponent implements OnInit {
     private _Router: Router
   ) {
 
-    // On route change
-    let that = this;
-    let r = Math.random() * (5 - 1) + 1;
+    // On route change, change hero background and size
     this._Router.events.subscribe((a) => {
       if (a instanceof NavigationEnd) {
         switch (a.url) {
           case '/':
-            that.classMap = 'homepage';
+            this.classMap = 'homepage';
             break;
           case '/about':
-            that.classMap = 'about';
+            this.classMap = 'about';
             break;
           case '/contact':
-            that.classMap = 'contact';
+            this.classMap = 'contact';
             break;
           case '/login':
-            that.classMap = 'search';
+            this.classMap = 'search';
             break;
           case '/search':
-            that.classMap = 'search';
+            this.classMap = 'search';
             break;
           case '/suggest':
-            that.classMap = 'suggest';
+            this.classMap = 'suggest';
             break;
           default:
-            that.classMap = 'others';
+            this.classMap = 'others';
             break;
         }
       }

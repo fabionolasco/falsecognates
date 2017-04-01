@@ -24,6 +24,15 @@ export class SuggestService {
         .post(this._httpService.baseUrl + 'terms', JSON.stringify(data), options);
   }
 
+  storeTmpData(data: Object) {
+    localStorage.setItem('suggestion', JSON.stringify(data));
+  }
+
+  getTmpData(): Object|boolean {
+    let data = localStorage.getItem('suggestion');
+    return data ? JSON.parse(data) : false;
+  }
+
   clearAll() {
     this.storedData = null;
   }

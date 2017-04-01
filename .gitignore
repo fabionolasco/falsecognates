@@ -6,6 +6,9 @@
 datasource.json
 /loopback/**/datasource.json
 **/datasource.json
+datasources.json
+/loopback/**/datasources.json
+**/datasources.json
 
 # compiled output
 /dist

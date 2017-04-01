@@ -38,19 +38,34 @@ firewall-cmd --zone=public --add-port=3000/tcp
 firewall-cmd --zone=public --add-port=3306/tcp
 firewall-cmd --zone=public --add-port=22/tcp
 
+mv /usr/share/nginx/html /usr/share/nginx/html-old
+
+ln -s /fcognates/app/static /usr/share/nginx/html
+
 sleep 1
 
 systemctl enable nginx
 systemctl start nginx
 
+
 grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log |tail -1
 
 # MySQL (for development purposes only)
-# GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'newpassword';
+# SET PASSWORD FOR 'root'@'localhost' = PASSWORD('password');
+# GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password';
 
 # Remote Access to all IPs (for development purposes only)
 # vi /etc/my.cnf
 # bind-address = *
+
+# Enable SPA redirect to index, like htaccess
+# nginx configuration
+# vi /etc/nginx/nginx.conf
+# location / {
+#   if (!-e $request_filename){
+#     rewrite ^/(.*)$ /index.html break;
+#   }
+# }
 
 # Enable SPA redirect to index, like htaccess
 # nginx configuration
@@ -64,5 +79,11 @@ grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log 
 # Last Steps
 # 1. Upload compiled False Cognates project (angular)
 # 2. Upload Loopback files
-# 3. Run npm install for Loopback
-# 4. Run loopback instance
+# 3. Run SQL Backup to create tables
+# 4. Create MySQL Stored Procedures
+# 5. Run npm install for Loopback
+# 6. Create crons for backup and auto-restart services
+# 7. Enable GZIP on nginx
+# 8. Enable browser cache on nginx
+
+

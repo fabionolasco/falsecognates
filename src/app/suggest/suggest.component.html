@@ -1,4 +1,4 @@
-<div class="suggest">
+<div class="suggest basic-page">
 
   <div class="row">
     <div class="col-xs-12">
@@ -46,6 +46,7 @@
         select-value-of="language_name"
         [(ngModel)]="data.lang1"
         [source]="mySource"
+        (valueChanged)="storeTmpData()"
         tab-to-select="true"
         accept-user-input="false">
       <hr class="base-hr">
@@ -64,6 +65,7 @@
         select-value-of="language_name"
         [(ngModel)]="data.lang2"
         [source]="mySource"
+        (valueChanged)="storeTmpData()"
         tab-to-select="true"
         accept-user-input="false">
       <hr class="base-hr">
@@ -78,6 +80,7 @@
         class="bar-input"
         [disabled]="!data.lang1 || data.lang1.length < 1"
         (keypress)="capitalize('word1')"
+        (keyup)="storeTmpData()"
         [(ngModel)]="data.word1">
       <hr class="base-hr">
       <br class="hidden-sm-up">
@@ -90,6 +93,7 @@
         class="bar-input"
         [disabled]="!data.lang2 || data.lang2.length < 1"
         (keypress)="capitalize('word2')"
+        (keyup)="storeTmpData()"
         [(ngModel)]="data.word2">
       <hr class="base-hr">
     </div>
@@ -101,6 +105,7 @@
       <textarea name="meaning1"
       class="bar-textarea"
       maxlength="1000"
+      (keyup)="storeTmpData()"
       [disabled]="!data.word1"
       [(ngModel)]="data.meaning1"></textarea>
       <hr class="base-hr">
@@ -112,6 +117,7 @@
       <textarea name="meaning2"
       maxlength="1000"
       class="bar-textarea"
+      (keyup)="storeTmpData()"
       [disabled]="!data.word2"
       [(ngModel)]="data.meaning2"></textarea>
       <hr class="base-hr">
@@ -120,10 +126,12 @@
 
   <div class="row">
     <div class="col-xs-12 text-right">
-      <span class="base-line-height">
-        By submiting this form you are accepting the <span class="bold">FalseCognates.com</span>
-      </span>
-      <a routerLink="/agreement" target="_blank"> Terms and Agreements.</a>
+      <md-checkbox [(ngModel)]="data.accepted">
+        <div class="base-line-height">
+          I read and accepted the <span class="bold">FalseCognates.com</span>
+        </div>
+        <a id="termsAgreement" routerLink="/agreement" target="_blank"> Terms and Agreements.</a>
+      </md-checkbox>
       <hr class="base-hr">
     </div>
   </div>
@@ -134,7 +142,7 @@
       <button id="search-button"
         md-raised-button
         (click)="submitFalseCognate()"
-        [disabled]="!canSubmit || !data.word1 || !data.word2 || !data.meaning1 || !data.meaning2">Submit Form</button>
+        [disabled]="!canSubmit || !data.word1 || !data.word2 || !data.meaning1 || !data.meaning2 || !data.accepted">Submit Form</button>
       <br>
       &nbsp;
       <br>
