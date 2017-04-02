@@ -15,7 +15,7 @@ export class ForgotService {
 
   sendForgotRequest(formValues) {
     let options = new RequestOptions({ headers: this._httpService.queryHeaders });
-    return this._http.post(this._httpService.baseUrl + 'member/reset', JSON.stringify(formValues), options);
+    return this._http.post(this._httpService.baseUrl + 'members/reset', JSON.stringify(formValues), options);
   }
 
   OnInit() { }

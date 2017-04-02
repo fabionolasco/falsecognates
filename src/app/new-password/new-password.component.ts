@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewPasswordService } from './new-password.service';
 import { MessagesService } from '../commons/messages.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-password',
@@ -11,15 +12,15 @@ export class NewPasswordComponent implements OnInit {
 
   public newPassData;
 
-  constructor(public MessagesService: MessagesService, private _newPasswordService: NewPasswordService) {
+  constructor(public MessagesService: MessagesService, private _newPasswordService: NewPasswordService, private _router: Router) {
     this.clearPassData();
     this.newPassData.accessToken = document.location.href.split('=')[1];
+    let token = localStorage.setItem('session_token', this.newPassData.accessToken);
   }
 
   clearPassData() {
     this.newPassData = {
       security: '',
-      accessToken: '',
       password: '',
       confirmPassword: ''
     };
@@ -34,7 +35,6 @@ export class NewPasswordComponent implements OnInit {
         .subscribe(
           (data) => {
             this.clearPassData();
-            // console.log(data);
           }
         );
       // Security Through Obscurity
@@ -46,6 +46,8 @@ export class NewPasswordComponent implements OnInit {
   success() {
     this.MessagesService.message = 'New password registered successfully!';
     this.MessagesService.type = 'alert-success';
+    this.MessagesService.hasMessage = '';
+    this._router.navigate(['/login']);
   }
 
   ngOnInit() {

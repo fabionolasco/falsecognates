@@ -68,7 +68,8 @@ export class LoginComponent implements OnInit {
 
           }, (error) => {
               this.cleanModels();
-              this.cancelProcess(error.json().error.message);
+              this.MessagesService.message = error.json().error.message;
+              this.MessagesService.type = 'alert-danger';
               this.loginEmail.nativeElement.focus();
           });
 

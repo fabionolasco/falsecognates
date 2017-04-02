@@ -31,12 +31,13 @@ module.exports = function(User) {
       data.accessToken = '1';
     }
     // Try to find User based on
-    User.findById(data.accessToken, function(err, user) {
+    User.findById(options.accessToken.userId, function(err, userChanged) {
       if (err) {
         // Security through obscurity
-        cb(null, {'response': 'Your password has been reset successfully'});
+        cb(null, {'response': 'Your password has been reset successfully...'});
+        return res.sendStatus(201);
       }
-      user.updateAttribute('password', data.password, function(err, user) {
+      userChanged.updateAttribute('password', data.password, function(err, user) {
         cb(null, {'response': 'Your password has been reset successfully'});
       });
     });
