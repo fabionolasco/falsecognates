@@ -71,7 +71,8 @@ export class AppModule {
           this._userService.logout();
           this._router.navigate(['/login']);
           this._messagesService.message = 'Your session expired! Please log in again!';
-          this._messagesService.hasMessage = '/login';
+          this._messagesService.type = 'alert-warning';
+          this._messagesService.hasMessage = this._router.url;
           localStorage.setItem('session_status', 'expired');
           subs.unsubscribe();
         }

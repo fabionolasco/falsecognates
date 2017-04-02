@@ -15,12 +15,9 @@
   },
   "User": {
     "dataSource": "mysqlDs",
-    "public": true,
-    "options": {
-      "emailVerificationRequired": false
-    }
+    "public": false
   },
-  "user": {
+  "member": {
     "dataSource": "mysqlDs",
     "public": true,
     "options": {

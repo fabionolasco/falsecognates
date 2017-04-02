@@ -821,7 +821,7 @@ module.exports = function(app) {
 
     ], function(err, langs) {
       if (err) throw err;
-      console.log('Models created: \n', langs);
+      // console.log('Models created: \n', langs);
     });
 
   });

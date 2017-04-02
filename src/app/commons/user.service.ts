@@ -22,12 +22,12 @@ export class UserService {
 
   register(formValues) {
     let options = new RequestOptions({ headers: this._httpService.queryHeaders });
-    return this._http.post(this._httpService.baseUrl + 'Users', JSON.stringify(formValues), options);
+    return this._http.post(this._httpService.baseUrl + 'member', JSON.stringify(formValues), options);
   }
 
   login(formValues) {
     let options = new RequestOptions({ headers: this._httpService.queryHeaders });
-    return this._http.post(this._httpService.baseUrl + 'Users/login', JSON.stringify(formValues), options);
+    return this._http.post(this._httpService.baseUrl + 'member/login', JSON.stringify(formValues), options);
   }
 
   getId() {
@@ -52,7 +52,7 @@ export class UserService {
 
   checkSessionStatus() {
     let options = new RequestOptions({ headers: this._httpService.queryHeaders });
-    // return this._http.get(this._httpService.baseUrl + 'User/' + userId + '/accessTokens', options);
+    // return this._http.get(this._httpService.baseUrl + 'member/' + userId + '/accessTokens', options);
     return this._http.get(this._httpService.baseUrl + 'languages', options);
   }
 
@@ -64,7 +64,7 @@ export class UserService {
     this.userId = null;
     this.token = '';
     let options = new RequestOptions({ headers: this._httpService.queryHeaders });
-    return this._http.post(this._httpService.baseUrl + 'Users/logout', '', options);
+    return this._http.post(this._httpService.baseUrl + 'member/logout', '', options);
   }
 
   OnInit() { }

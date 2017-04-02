@@ -31,7 +31,7 @@ export class LanguagesService {
 
   getUserData() {
     let urlParams = document.location.href.split('?');
-    let url = this._httpService.baseUrl + '/user/session?oauth_callback=true&' + urlParams[1];
+    let url = this._httpService.baseUrl + '/member/session?oauth_callback=true&' + urlParams[1];
 
     this._http.post(url, {})
         .subscribe(function(response: Response){
