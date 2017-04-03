@@ -27,11 +27,7 @@ export class TermsComponent implements OnInit {
     this._userId = localStorage.getItem('usedId');
   }
 
-  ngOnInit() {
-    setTimeout(() => {
-      console.log('this.item', this._initialVoteCount, this._initialVoteValue);
-    }, 2000);
-  }
+  ngOnInit() { }
 
   // Verify if user can vote
   canVote(): boolean {

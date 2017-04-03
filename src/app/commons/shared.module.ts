@@ -17,7 +17,6 @@ import { NewPasswordService } from '../new-password/new-password.service';
 import { SearchService } from './search.service';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { SuggestService } from '../suggest/suggest.service';
-import { TermsService } from './terms.service';
 import { UserService } from './user.service';
 import { ValidatiorsService } from './validators.service';
 import { VotesService } from './vote.service';
@@ -46,7 +45,6 @@ import { CapitalizePipe } from './capitalize.pipe';
     SearchService,
     SidebarService,
     SuggestService,
-    TermsService,
     UserService,
     ValidatiorsService,
     VotesService

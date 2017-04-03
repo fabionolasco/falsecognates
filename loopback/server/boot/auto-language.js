@@ -159,7 +159,7 @@ module.exports = function(app) {
         "native_name": "dansk"
       }, {
         "acronym": "dv",
-        "language_name": "Divehi Maldivian",
+        "language_name": "Divehi-Maldivian",
         "native_name": "ދިވެހި"
       }, {
         "acronym": "nl",
@@ -171,31 +171,31 @@ module.exports = function(app) {
         "native_name": "English"
       }, {
         "acronym": "en-us",
-        "language_name": "English USA",
+        "language_name": "English-USA",
         "native_name": "English USA"
       }, {
         "acronym": "en-au",
-        "language_name": "English Australia",
+        "language_name": "English-Australia",
         "native_name": "English Australia"
       }, {
         "acronym": "en-uk",
-        "language_name": "English UK",
+        "language_name": "English-UK",
         "native_name": "English UK"
       }, {
         "acronym": "en-ir",
-        "language_name": "English Ireland",
+        "language_name": "English-Ireland",
         "native_name": "English Ireland"
       }, {
         "acronym": "en-sc",
-        "language_name": "English Scottland",
+        "language_name": "English-Scottland",
         "native_name": "English Scottland"
       }, {
         "acronym": "en-sa",
-        "language_name": "English South Africa",
+        "language_name": "English-South-Africa",
         "native_name": "English South Africa"
       }, {
         "acronym": "en-ca",
-        "language_name": "English Canada",
+        "language_name": "English-Canada",
         "native_name": "English Canada"
       }, {
         "acronym": "eo",
@@ -227,7 +227,7 @@ module.exports = function(app) {
         "native_name": "français, langue française"
       }, {
         "acronym": "ff",
-        "language_name": "Fula Pular",
+        "language_name": "Fula-Pular",
         "native_name": "Fulfulde, Pulaar, Pular"
       }, {
         "acronym": "gl",
@@ -255,7 +255,7 @@ module.exports = function(app) {
         "native_name": "ગુજરાતી"
       }, {
         "acronym": "ht",
-        "language_name": "Haitian Creole",
+        "language_name": "Haitian-Creole",
         "native_name": "Kreyòl ayisyen"
       }, {
         "acronym": "ha",
@@ -275,7 +275,7 @@ module.exports = function(app) {
         "native_name": "हिन्दी, हिंदी"
       }, {
         "acronym": "ho",
-        "language_name": "Hiri Motu",
+        "language_name": "Hiri-Motu",
         "native_name": "Hiri Motu"
       }, {
         "acronym": "hu",
@@ -331,7 +331,7 @@ module.exports = function(app) {
         "native_name": "basa Jawa"
       }, {
         "acronym": "kl",
-        "language_name": "Kalaallisut Greenlandic",
+        "language_name": "Kalaallisut-Greenlandic",
         "native_name": "kalaallisut, kalaallit oqaasii"
       }, {
         "acronym": "kn",
@@ -355,7 +355,7 @@ module.exports = function(app) {
         "native_name": "ភាសាខ្មែរ"
       }, {
         "acronym": "ki",
-        "language_name": "Kikuyu Gikuyu",
+        "language_name": "Kikuyu-Gikuyu",
         "native_name": "Gĩkũyũ"
       }, {
         "acronym": "rw",
@@ -363,7 +363,7 @@ module.exports = function(app) {
         "native_name": "Ikinyarwanda"
       }, {
         "acronym": "ky",
-        "language_name": "Kirghiz Kyrgyz",
+        "language_name": "Kirghiz-Kyrgyz",
         "native_name": "кыргыз тили"
       }, {
         "acronym": "kv",
@@ -383,7 +383,7 @@ module.exports = function(app) {
         "native_name": "Kurdî, كوردی‎"
       }, {
         "acronym": "kj",
-        "language_name": "Kwanyama, Kuanyama",
+        "language_name": "Kwanyama-Kuanyama",
         "native_name": "Kuanyama"
       }, {
         "acronym": "la",
@@ -415,7 +415,7 @@ module.exports = function(app) {
         "native_name": "lietuvių kalba"
       }, {
         "acronym": "lu",
-        "language_name": "Luba Katanga",
+        "language_name": "Luba-Katanga",
         "native_name": "Luba-Katanga"
       }, {
         "acronym": "lv",
@@ -447,7 +447,7 @@ module.exports = function(app) {
         "native_name": "Malti"
       }, {
         "acronym": "mi",
-        "language_name": "Māori",
+        "language_name": "Maori",
         "native_name": "te reo Māori"
       }, {
         "acronym": "mr",
@@ -471,11 +471,11 @@ module.exports = function(app) {
         "native_name": "Diné bizaad, Dinékʼehǰí"
       }, {
         "acronym": "nb",
-        "language_name": "Norwegian Bokmål",
+        "language_name": "Norwegian-Bokmal",
         "native_name": "Norsk bokmål"
       }, {
         "acronym": "nd",
-        "language_name": "North Ndebele",
+        "language_name": "North-Ndebele",
         "native_name": "isiNdebele"
       }, {
         "acronym": "ne",
@@ -487,7 +487,7 @@ module.exports = function(app) {
         "native_name": "Owambo"
       }, {
         "acronym": "nn",
-        "language_name": "Norwegian Nynorsk",
+        "language_name": "Norwegian-Nynorsk",
         "native_name": "Norsk nynorsk"
       }, {
         "acronym": "no",
@@ -499,7 +499,7 @@ module.exports = function(app) {
         "native_name": "ꆈꌠ꒿ Nuosuhxop"
       }, {
         "acronym": "nr",
-        "language_name": "South Ndebele",
+        "language_name": "South-Ndebele",
         "native_name": "isiNdebele"
       }, {
         "acronym": "oc",
@@ -511,7 +511,7 @@ module.exports = function(app) {
         "native_name": "ᐊᓂᔑᓈᐯᒧᐎᓐ"
       }, {
         "acronym": "cu",
-        "language_name": "Old Slavonic",
+        "language_name": "Old-Slavonic",
         "native_name": "ѩзыкъ словѣньскъ"
       }, {
         "acronym": "om",
@@ -531,7 +531,7 @@ module.exports = function(app) {
         "native_name": "ਪੰਜਾਬੀ, پنجابی‎"
       }, {
         "acronym": "pi",
-        "language_name": "Pāli",
+        "language_name": "Pali",
         "native_name": "पाऴि"
       }, {
         "acronym": "fa",
@@ -551,15 +551,15 @@ module.exports = function(app) {
         "native_name": "Português"
       }, {
         "acronym": "pt-br",
-        "language_name": "Portuguese Brasil",
+        "language_name": "Portuguese-Brasil",
         "native_name": "Português Brasileiro"
       }, {
         "acronym": "pt-pt",
-        "language_name": "Portuguese Portugal",
+        "language_name": "Portuguese-Portugal",
         "native_name": "Português de Portugal"
       }, {
         "acronym": "pt-an",
-        "language_name": "Portuguese Angola",
+        "language_name": "Portuguese-Angola",
         "native_name": "Português de Angola"
       }, {
         "acronym": "qu",
@@ -599,7 +599,7 @@ module.exports = function(app) {
         "native_name": "सिन्धी, سنڌي، سندھی‎"
       }, {
         "acronym": "se",
-        "language_name": "Northern Sami",
+        "language_name": "Northern-Sami",
         "native_name": "Davvisámegiella"
       }, {
         "acronym": "sm",
@@ -615,7 +615,7 @@ module.exports = function(app) {
         "native_name": "српски језик"
       }, {
         "acronym": "gd",
-        "language_name": "Scottish Gaelic",
+        "language_name": "Scottish-Gaelic",
         "native_name": "Gàidhlig"
       }, {
         "acronym": "sn",
@@ -639,7 +639,7 @@ module.exports = function(app) {
         "native_name": "Soomaaliga, af Soomaali"
       }, {
         "acronym": "st",
-        "language_name": "Southern Sotho",
+        "language_name": "Southern-Sotho",
         "native_name": "Sesotho"
       }, {
         "acronym": "es",
@@ -647,39 +647,55 @@ module.exports = function(app) {
         "native_name": "Español, castellano"
       }, {
         "acronym": "es-sp",
-        "language_name": "Spanish Spain",
+        "language_name": "Spanish-Spain",
         "native_name": "Español España"
       }, {
         "acronym": "es-co",
-        "language_name": "Spanish Colombia",
+        "language_name": "Spanish-Colombia",
         "native_name": "Español de Colombia"
       }, {
         "acronym": "es-mx",
-        "language_name": "Spanish Mexico",
+        "language_name": "Spanish-Mexico",
         "native_name": "Español de Mexico"
       }, {
         "acronym": "es-ar",
-        "language_name": "Spanish Argentina",
+        "language_name": "Spanish-Argentina",
         "native_name": "Español de Argentina"
       }, {
         "acronym": "es-dm",
-        "language_name": "Spanish Rep Dominicana",
+        "language_name": "Spanish-Rep-Dominicana",
         "native_name": "Español de Rep Dominicana"
       }, {
         "acronym": "es-bo",
-        "language_name": "Spanish Bolivia",
+        "language_name": "Spanish-Bolivia",
         "native_name": "Español de Bolivia"
       }, {
         "acronym": "es-cu",
-        "language_name": "Spanish Cuba",
+        "language_name": "Spanish-Cuba",
         "native_name": "Español de Cuba"
       }, {
+        "acronym": "es-ur",
+        "language_name": "Spanish-Uruguay",
+        "native_name": "Español de Uruguay"
+      }, {
+        "acronym": "es-pa",
+        "language_name": "Spanish-Paraguay",
+        "native_name": "Español de Paraguay"
+      }, {
+        "acronym": "es-eq",
+        "language_name": "Spanish-Equador",
+        "native_name": "Español de Equador"
+      }, {
+        "acronym": "es-ch",
+        "language_name": "Spanish-Chile",
+        "native_name": "Español de Chile"
+      }, {
         "acronym": "es-gu",
-        "language_name": "Spanish Guatemala",
+        "language_name": "Spanish-Guatemala",
         "native_name": "Español de Guatemala"
       }, {
         "acronym": "es-pr",
-        "language_name": "Spanish Puerto Rico",
+        "language_name": "Spanish-Puerto-Rico",
         "native_name": "Español de Puerto Rico"
       }, {
         "acronym": "su",
@@ -783,7 +799,7 @@ module.exports = function(app) {
         "native_name": "Tiếng Việt"
       }, {
         "acronym": "vo",
-        "language_name": "Volapük",
+        "language_name": "Volapuk",
         "native_name": "Volapük"
       }, {
         "acronym": "wa",
@@ -799,7 +815,7 @@ module.exports = function(app) {
         "native_name": "Wollof"
       }, {
         "acronym": "fy",
-        "language_name": "Western Frisian",
+        "language_name": "Western-Frisian",
         "native_name": "Frysk"
       }, {
         "acronym": "xh",

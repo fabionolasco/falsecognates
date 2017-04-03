@@ -20,6 +20,15 @@ export class SearchService {
     private _router: Router
   ) { }
 
+  setResults(results) {
+    this.results = results;
+  }
+
+  getTopTerms() {
+    let options = new RequestOptions({ headers: this._httpService.queryHeaders });
+    return this._http.get(this._httpService.baseUrl + 'terms/top-terms', options);
+  }
+
   searchByTerm (searchParams) {
     let options = new RequestOptions({ headers: this._httpService.queryHeaders });
     return this._http.post(this._httpService.baseUrl + 'terms/search-terms-by-term-name', JSON.stringify(searchParams), options);

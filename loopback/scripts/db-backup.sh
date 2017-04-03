@@ -2,7 +2,7 @@
 
 # Create a cron job will backup the DB every 3 days and email it to me
 # crontab -e
-# * * */3 * * /fcognates/app/loopback/scripts/db-backup.sh
+# 0 0 */3 * * /fcognates/app/loopback/scripts/db-backup.sh
 # service crond restart
 
 # 16bits password from env var

@@ -10,7 +10,7 @@ import { HttpService } from './http.service';
 export class LanguagesService {
 
   private langUrl: string;
-  public langs;
+  public langs = [];
 
   constructor(private _http: Http, private _httpService: HttpService, private _messagesService: MessagesService) {
     this.langUrl = this._httpService.baseUrl + 'languages';
@@ -29,32 +29,28 @@ export class LanguagesService {
     return false;
   }
 
-  getUserData() {
-    let urlParams = document.location.href.split('?');
-    let url = this._httpService.baseUrl + '/members/session?oauth_callback=true&' + urlParams[1];
-
-    this._http.post(url, {})
-        .subscribe(function(response: Response){
-          // console.log('attempt call', response);
-        });
-  }
-
   getLanguages(): any {
     let tmp: any = localStorage.getItem('languages');
+    if (this.langs.length) {
+      // Return content local var
+      return  new Promise((resolve) => {
+        resolve(this.langs);
+      });
+    } else
     if (tmp) {
-      // console.log('Got from localStorage', tmp);
+      // Return content from local storage
       return  new Promise((resolve) => {
         this.langs = JSON.parse(tmp);
         resolve(this.langs);
       });
     } else {
+      // Request data from server
       return this._http.get(this.langUrl)
         .toPromise()
-        .then(function(response: Response){
-          console.log('Got languages from server :: ', response.json());
+        .then((response: Response) => {
           localStorage.setItem('languages', JSON.stringify(response.json()));
+          this.langs = response.json();
           return new Promise((resolve) => {
-            this.langs = response.json();
             resolve(this.langs);
           });
         });

@@ -189,6 +189,16 @@ input.bar-input,
   font-style: italic;
 }
 
+.alert::first-letter {
+  text-transform: capitalize;
+}
+
+.ng2-auto-complete-wrapper div,
+.ng2-auto-complete-wrapper strong,
+.ng2-auto-complete-wrapper li {
+    margin: 0 !important;
+}
+
 @media (min-width: 768px) {
   .content {
     margin-left: 300px !important;
