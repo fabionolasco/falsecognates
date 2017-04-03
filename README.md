@@ -6,24 +6,28 @@
 ## Related Technologies
 
 1. Front End
-  a. Angular 2+
-  b. Angular CLI
-  c. HammerJS
-  d. TypeScript
-2. Web Design
-  a. CSS3
-  b. SASS
-  c. Bootstrap 4
-  d. Responsive Design
+   - Angular 2+
+   - Angular CLI
+   - HammerJS
+   - TypeScript
+
+2.  Web Design
+    - CSS3
+    - SASS
+    - Bootstrap 4
+    - Responsive Design
+
 3. Data
-  a. Loopback 3
-  b. MySQL
-  c. Stored Procedures
+    - Loopback 3
+    - MySQL
+    - Stored Procedures
+
 4. Server
-  a. CentOS
-  b. NGNIX
-  c. Cronjobs
-  d. Forever
+    - CentOS
+    - NGNIX
+    - Cronjobs
+    - Forever
+
 5. MailGun API
 
 ## Licence
