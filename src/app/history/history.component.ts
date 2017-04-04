@@ -8,8 +8,8 @@ import { HeaderService } from '../commons/header.service';
 })
 export class HistoryComponent implements OnInit {
 
-  public sLangs;
-  public sTerms;
+  public sLangs = {languages: []};
+  public sTerms = {terms: []};
 
   constructor(public _HeaderService: HeaderService) {
     this._HeaderService.headerSize = 'small';
@@ -17,15 +17,11 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit() {
     let sLangs = window.localStorage.getItem('search-languages');
-    if (!sLangs) {
-      this.sLangs = {languages: []};
-    } else {
+    if (sLangs) {
       this.sLangs = JSON.parse(sLangs);
     }
     let sTerms = window.localStorage.getItem('search-terms');
-    if (!sTerms) {
-      this.sTerms = {terms: []};
-    } else {
+    if (sTerms) {
       this.sTerms = JSON.parse(sTerms);
     }
   }

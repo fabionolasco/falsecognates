@@ -81,4 +81,16 @@ export class SearchBarComponent implements OnInit {
       });
   }
 
+  goToLang2() {
+    setTimeout(() => {
+      document.getElementById('myDataField2').focus();
+    }, 77);
+  }
+
+  goToButton() {
+    setTimeout(() => {
+      document.getElementById('search-button-lang').focus();
+    }, 77);
+  }
+
 }

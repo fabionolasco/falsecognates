@@ -199,6 +199,15 @@ input.bar-input,
     margin: 0 !important;
 }
 
+.fa-external-link {
+  font-size: 10px;
+}
+
+.fa-external-link,
+.fa-search {
+  color: #ccc;
+}
+
 @media (min-width: 768px) {
   .content {
     margin-left: 300px !important;

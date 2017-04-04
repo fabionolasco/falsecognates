@@ -18,8 +18,8 @@
 
   <ol>
     <li *ngFor="let lang of sLangs.languages">
-      <a routerLink="/search-languages/{{lang.lang1.language_name}}/{{lang.lang2.language_name}}">
-       {{lang.lang1.language_name}} &amp; {{lang.lang2.language_name}}
+      <a routerLink="/search-languages/{{lang.lang1}}/{{lang.lang2}}">
+       {{lang.lang1}} &amp; {{lang.lang2}}
       </a>
     </li>
   </ol>

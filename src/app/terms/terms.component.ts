@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { UserService } from '../commons/user.service';
+import { SearchService } from '../commons/search.service';
+import { LanguagesService } from '../commons/languages.service';
 import { MessagesService } from '../commons/messages.service';
 import { VotesService } from '../commons/vote.service';
 import { Router } from '@angular/router';
@@ -19,6 +21,8 @@ export class TermsComponent implements OnInit {
   @Input('item') item;
 
   constructor(
+    public LanguagesService: LanguagesService,
+    private _searchService: SearchService,
     private _userService: UserService,
     private _messagesService: MessagesService,
     private _router: Router,
@@ -78,6 +82,10 @@ export class TermsComponent implements OnInit {
           }
         );
     }
+  }
+
+  encodeUrl(str) {
+    return encodeURIComponent(str);
   }
 
 }
