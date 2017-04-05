@@ -111,3 +111,18 @@ DELIMITER ;
 
 
 ;;;;;;;;;;;;;;;;;;;;;;
+
+DELIMITER //
+drop procedure if exists preExisting; //
+CREATE PROCEDURE `preExisting` (l1 varchar(100), l2 varchar(100), w1 varchar(100), w2 varchar(100))
+BEGIN
+
+SELECT * FROM term
+WHERE ( ( (lang1=l1 AND lang2=l2 AND word1=w1 AND word2=w2) OR (lang1=l2 AND lang2=l1 AND word1=w2 AND word2=w1) ) AND ((term_status IS NULL) OR (term_status IS NOT NULL AND term_status NOT LIKE '%x%')) )
+ORDER BY id ASC
+LIMIT 0, 100;
+
+END//
+DELIMITER ;
+
+;;;;;;;;;;;;;;;;;;;;;;

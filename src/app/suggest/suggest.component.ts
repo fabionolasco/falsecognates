@@ -15,6 +15,7 @@ export class SuggestComponent implements OnInit {
   public alertMessage = '';
   public successMessage = '';
   public canSubmit = true;
+  public preExistent: any = false;
   public data;
 
   constructor(
@@ -108,6 +109,26 @@ export class SuggestComponent implements OnInit {
 
   myListFormatter(data: any): string {
     return `<strong>${data['language_name']}</strong>(${data['native_name']})`;
+  }
+
+  checkForPreExisting() {
+    const searchParams = {
+      l1: this.data.lang1,
+      l2: this.data.lang2,
+      w1: this.data.word1,
+      w2: this.data.word2
+    };
+    this._SuggestService.checkPreExistend(searchParams)
+      .map((resp) => { return JSON.parse(resp['_body'])[0]; })
+      .subscribe(
+        (resp) => {
+          this.preExistent = resp;
+        }
+      );
+  }
+
+  clearPreExisting() {
+    this.preExistent = [];
   }
 
 }

@@ -36,6 +36,7 @@ const appRoutes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginAuthGuardService ] },
+  { path: 'term-id/:termVal', component: SearchComponent },
   { path: 'search-term/:termVal', component: SearchComponent },
   { path: 'search-languages/:lang1/:lang2', component: SearchComponent },
   { path: 'search-languages/:lang1/:lang2/:page', component: SearchComponent },

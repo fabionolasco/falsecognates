@@ -13,6 +13,7 @@ export class SearchService {
   public itemsPerPage = 30;
   public totalPages = 0;
   public pagesRange = [];
+  public searchType = '';
 
   constructor(
     private _http: Http,
@@ -32,6 +33,11 @@ export class SearchService {
   searchByTerm (searchParams) {
     let options = new RequestOptions({ headers: this._httpService.queryHeaders });
     return this._http.post(this._httpService.baseUrl + 'terms/search-terms-by-term-name', JSON.stringify(searchParams), options);
+  }
+
+  searchById(searchParams) {
+    let options = new RequestOptions({ headers: this._httpService.queryHeaders });
+    return this._http.get(this._httpService.baseUrl + 'terms/' + searchParams.termId, options);
   }
 
   searchByLanguages(searchParams) {

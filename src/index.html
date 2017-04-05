@@ -4,9 +4,7 @@
   <meta charset="utf-8">
   <title>FalseCognates</title>
   <base href="/">
-
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-
   <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/apple-icon-72x72.png">
@@ -24,10 +22,6 @@
   <meta name="msapplication-TileImage" content="/assets/images/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   <link rel="manifest" href="/assets/images/manifest.json">
-
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <style>
     .loading {
       display: block;
@@ -101,6 +95,25 @@
       </div>
 
     </app-root>
+
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    </noscript>
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
 
 </body>
 </html>

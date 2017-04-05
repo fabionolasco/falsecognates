@@ -188,21 +188,47 @@ export class ResultsComponent implements OnInit, OnDestroy {
       );
   }
 
+  searchById() {
+    let searchParams = {
+      termId: this._route.url['_value'][1].path
+    };
+    let subs = this.SearchService.searchById(searchParams)
+      .map((data) => { return JSON.parse(data['_body']); })
+      .subscribe(
+        (data) => {
+          this.SearchService.results = [data];
+          this.SearchService.count = this.SearchService.results.length;
+          this.recountVotes();
+          subs.unsubscribe();
+          this.isSearching = false;
+        }
+      );
+  }
+
   search() {
     // Get ID
     this.userId = localStorage.getItem('usedId');
     // Get Top Terms - Homepage
     if (this._route.url['_value'][0] === undefined) {
+      this.SearchService.searchType = 'top-terms';
       this.isSearching = true;
       this.homePageTopTerms();
     } else {
+      // Get search results by id
+      if (this._route.url['_value'][0].path === 'term-id') {
+        this.SearchService.searchType = 'term-id';
+        this.isSearching = true;
+        this.searchById();
+      } else
       // Get search results by language
       if (this._route.url['_value'][0].path === 'search-languages') {
+        this.SearchService.searchType = 'search-languages';
         this.isSearching = true;
         this.searchByLanguages();
       } else
       // Get search results by term
       if (this._route.url['_value'][0].path === 'search-term') {
+        this.SearchService.searchType = 'search-term';
         this.isSearching = true;
         this.searchByTerm();
       } else {

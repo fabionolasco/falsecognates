@@ -33,6 +33,11 @@ export class SuggestService {
     return data ? JSON.parse(data) : false;
   }
 
+  checkPreExistend(searchParams) {
+    let options = new RequestOptions({ headers: this._httpService.queryHeaders });
+    return this._http.post(this._httpService.baseUrl + 'terms/existing-terms', JSON.stringify(searchParams), options);
+  }
+
   clearAll() {
     this.storedData = null;
   }

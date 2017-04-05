@@ -252,4 +252,39 @@ module.exports = function(Term) {
     }
   });
 
+  // Stored Procedure - topTerms
+  Term.preExisting = function (data, options, cb) {
+
+    var sql = 'CALL preExisting("' + data.l1 + '","' + data.l2 + '","' + data.w1 + '","' + data.w2 + '");';
+    ds.connector.query(sql, function(err, data) {
+      if (err) return cb(err);
+      cb(null, data);
+    });
+  };
+  Term.remoteMethod('preExisting', {
+    accepts: [{
+        arg: 'data',
+        type: 'Object',
+        required: false,
+        http: {
+          source: 'body'
+        }
+      },
+      {
+        arg: 'options',
+        type: 'Object',
+        http: "optionsFromRequest"
+      }
+    ],
+    returns: {
+      root: true,
+      type: 'object'
+    },
+    http: {
+      verb: 'post',
+      status: 201,
+      path: '/existing-terms'
+    }
+  });
+
 };
