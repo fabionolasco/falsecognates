@@ -3,6 +3,7 @@ import { UserService } from '../commons/user.service';
 import { MessagesService } from '../commons/messages.service';
 import { VotesService } from '../commons/vote.service';
 import { SearchService } from '../commons/search.service';
+import { LanguagesService } from '../commons/languages.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -26,6 +27,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   public isVoting: Subscription;
 
   constructor(
+    public LanguagesService: LanguagesService,
     public SearchService: SearchService,
     private _userService: UserService,
     private _messagesService: MessagesService,

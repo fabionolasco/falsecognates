@@ -11,7 +11,7 @@ export class ValidatiorsService {
   }
 
   public passwordValidator(data) {
-    return data.length > 4;
+    return data.length >= 4;
   }
 
 }

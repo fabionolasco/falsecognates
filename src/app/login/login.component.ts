@@ -100,6 +100,9 @@ export class LoginComponent implements OnInit {
           .subscribe((response) => {
               this.loginData.email = this.registerData.email;
               this.loginData.password = this.registerData.password;
+              this.MessagesService.message = 'Welcome! You were successfuly registered!';
+              this.MessagesService.type = 'alert-success';
+              this.MessagesService.hasMessage = '/login';
               this.sendLogin();
           }, (error) => {
               this.cleanModels();

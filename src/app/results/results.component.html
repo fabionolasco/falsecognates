@@ -1,4 +1,4 @@
-<div *ngIf="!isSearching">
+<div *ngIf="!isSearching && LanguagesService.langs.length > 0">
   <div *ngIf="SearchService.results && SearchService.results.length > 0">
     <div *ngFor="let item of SearchService.results">
       <app-terms [item]="item"></app-terms>

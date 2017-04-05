@@ -22,7 +22,7 @@ export class UserService {
 
   register(formValues) {
     let options = new RequestOptions({ headers: this._httpService.queryHeaders });
-    return this._http.post(this._httpService.baseUrl + 'member', JSON.stringify(formValues), options);
+    return this._http.post(this._httpService.baseUrl + 'members', JSON.stringify(formValues), options);
   }
 
   login(formValues) {

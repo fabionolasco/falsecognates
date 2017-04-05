@@ -45,22 +45,18 @@ export class TermsComponent implements OnInit {
     return true;
   }
 
+  isValid(x) {
+    return !isNaN(x) && x !== undefined && x !== null;
+  }
+
   getInitialValue() {
-    if (this._initialVoteCount === null) {
-      this._initialVoteCount = this.item.vote_count === null ? 0 : this.item.vote_count;
-    }
-    if (this._initialVoteValue === null) {
-      this._initialVoteValue = this.item.vote_value === null ? 0 : this.item.vote_value;
-    }
+    this._initialVoteCount = (this.isValid(this.item.vote_count)) ? this.item.vote_count : 0;
+    this._initialVoteValue = (this.isValid(this.item.vote_value)) ? this.item.vote_value : 0;
   }
 
   // Send Vote Now
   voteNow(vote_value: number, fcognate_id: number): void {
     this.getInitialValue();
-    if (!this._userId) {
-      this._router.navigate(['/login']);
-      this._messagesService.message = 'Please Log In or Register to vote!';
-    }
     if (this.canVote()) {
       let formValues = {
         term_id: fcognate_id,
@@ -69,11 +65,14 @@ export class TermsComponent implements OnInit {
       let subs = this._votesService.sendVote(formValues)
         .subscribe(
           (data) => {
-            console.log('this._initialVoteCount', this._initialVoteCount);
-            console.log('this._initialVoteValue', this._initialVoteValue);
-            console.log('vote_value', vote_value);
+            // console.log('this.item', this.item);
+            // console.log('this._initialVoteCount', this._initialVoteCount);
+            // console.log('this._initialVoteValue', this._initialVoteValue);
+            // console.log('vote_value', vote_value);
+            // if (isNaN(this.item.vote_count)) { this.item.vote_count = 0; }
             this.item.vote_count = (this._initialVoteCount - this._initialVoteValue) + vote_value;
-            console.log('this.item.vote_count', this.item.vote_count);
+            // console.log('this.item.vote_count', this.item.vote_count);
+            // console.log('========');
             this._votesService.voted.next(new Date());
             subs.unsubscribe();
           },
