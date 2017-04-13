@@ -2,7 +2,7 @@
 
   <div class="row">
 
-    <div class="col-xs-12">
+    <div class="col-12">
       <ul class="breadcrumbs nopadding">
         <li><a routerLink="/">Homepage</a></li>
         <li>/</li>
@@ -10,14 +10,14 @@
       </ul>
     </div>
 
-    <div class="col-xs-12" *ngIf="MessagesService.message.length > 0">
+    <div class="col-12" *ngIf="MessagesService.message.length > 0">
       &nbsp;<br>
       <div class="alert" [ngClass]="MessagesService.type" role="alert">
         {{ MessagesService.message }}
       </div>
     </div>
 
-    <form class="col-xs-12 col-lg-6">
+    <form class="col-12 col-lg-6">
 
       <h3>Login</h3>
 
@@ -43,11 +43,11 @@
 
     </form>
 
-    <div class="col-xs-12 hidden-lg-up">
+    <div class="col-12 hidden-lg-up">
       <hr>
     </div>
 
-    <form class="col-xs-12 col-lg-6">
+    <form class="col-12 col-lg-6">
 
       <h3>Register</h3>
 

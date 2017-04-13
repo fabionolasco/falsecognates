@@ -1,11 +1,11 @@
 <div class="row" *ngIf="mySource && mySource.length">
 
-  <div class="col-xs-12">
+  <div class="col-12">
       <h3>Search by Languages</h3>
       <br>
   </div>
 
-  <div class="col-xs-12 col-sm-6">
+  <div class="col-12 col-sm-6">
     <label for="myDataField1">Please select language 1:</label>
     <input  id="myDataField1"
       name="myDataField1"
@@ -25,7 +25,7 @@
       <br class="hidden-sm-up">
   </div>
 
-  <div class="col-xs-12 col-sm-6">
+  <div class="col-12 col-sm-6">
     <label for="myDataField2">Please select language 2:</label>
       <input id="myDataField2"
         name="myDataField2"
@@ -43,7 +43,7 @@
         tab-to-select="true">
   </div>
 
-  <div class="col-xs-12 text-right">
+  <div class="col-12 text-right">
     <br>
     <button id="search-button-lang"
       md-raised-button
@@ -56,7 +56,7 @@
       </button>
   </div>
 
-  <div class="col-xs-12">
+  <div class="col-12">
     <hr class="base-hr">
     <h3>Search by Term</h3>
     <br>
@@ -69,7 +69,7 @@
       [(ngModel)]="searchParams.term">
   </div>
 
-  <div class="col-xs-12 text-right">
+  <div class="col-12 text-right">
       <br>
       <button id="search-button"
         md-raised-button

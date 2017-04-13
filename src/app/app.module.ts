@@ -8,6 +8,7 @@ import { Router, NavigationStart } from '@angular/router';
 import { SharedModule } from './commons/shared.module';
 
 /* Services */
+import { LanguagesService } from './commons/languages.service';
 import { MessagesService } from './commons/messages.service';
 import { SidebarService } from './sidebar/sidebar.service';
 import { UserService } from './commons/user.service';
@@ -25,11 +26,16 @@ import { Components } from './app.routes';
 export class AppModule {
 
   constructor(
+    public LanguagesService: LanguagesService,
     private _messagesService: MessagesService,
     private _router: Router,
     private _sidebarService: SidebarService,
     private _userService: UserService
     ) {
+      // Identify Browser/System Language
+      let lang = window.navigator['userLanguage'] || window.navigator['language'];
+      this.LanguagesService.sysLanguage = lang.split('-')[0].toLowerCase();
+      this.LanguagesService.translateSite();
       // On route change
       this._router.events.subscribe((route) => {
         // Check Session

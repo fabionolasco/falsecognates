@@ -2,6 +2,23 @@ md-card {
   margin-bottom: 20px;
 }
 
+md-card-title {
+  font-weight: bold;
+  font-size: 1.2rem !important;
+  margin-bottom: 15px !important;
+  span {
+    display: block;
+    width: 100%;
+    font-weight: 100;
+    font-size: 14px !important;
+    cursor: pointer;
+    color: #999;
+  }
+  span:hover {
+    color: #0275d8;
+  }
+}
+
 .card-block {
   display: block;
   width: 100%;

@@ -2,14 +2,14 @@
 
   <div class="row">
 
-    <div class="col-xs-12" *ngIf="MessagesService.message.length > 0">
+    <div class="col-12" *ngIf="MessagesService.message.length > 0">
       &nbsp;<br>
       <div class="alert" [ngClass]="MessagesService.type" role="alert">
         {{ MessagesService.message }}
       </div>
     </div>
 
-    <div class="col-xs-12">
+    <div class="col-12">
       <br>
       <app-search-bar></app-search-bar>
       <hr class="base-hr">

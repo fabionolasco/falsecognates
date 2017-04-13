@@ -15,6 +15,10 @@
       "type": "string",
       "required": true
     },
+    "native1": {
+      "type": "string",
+      "required": true
+    },
     "meaning1": {
       "type": "string",
       "required": true
@@ -24,6 +28,10 @@
       "required": true
     },
     "word2": {
+      "type": "string",
+      "required": true
+    },
+    "native2": {
       "type": "string",
       "required": true
     },

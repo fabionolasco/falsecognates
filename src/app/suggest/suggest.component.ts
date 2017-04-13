@@ -71,10 +71,10 @@ export class SuggestComponent implements OnInit {
     if (!this.data.word2 || this.data.word2.length < 1) {
       this.alertMessage = 'Please enter a valid word.';
     } else
-    if (!this.data.meaning1 || this.data.meaning1.length < 1) {
+    if (!this.data.native1 || this.data.native1.length < 1) {
       this.alertMessage = 'Please select a valid definition.';
     } else
-    if (!this.data.meaning2 || this.data.meaning2.length < 1) {
+    if (!this.data.native2 || this.data.native2.length < 1) {
       this.alertMessage = 'Please select a valid definition.';
     } else {
       let tmpData = Object.assign({}, this.data);
@@ -102,6 +102,8 @@ export class SuggestComponent implements OnInit {
       lang2: '',
       word1: '',
       word2: '',
+      native1: '',
+      native2: '',
       meaning1: '',
       meaning2: ''
     };

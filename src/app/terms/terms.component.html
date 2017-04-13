@@ -3,38 +3,36 @@
   <md-card>
     <div class="card-block card-left">
         <md-card-header>
-          <md-card-title>{{item.word1}}</md-card-title>
-          <md-card-subtitle>
-            <a [routerLink]="['/search-languages/' + item.lang1 + '/' + item.lang2]">
-              {{item.lang1}} ({{LanguagesService.acronyms[item.lang1].native_name}})
-            </a>
-          </md-card-subtitle>
+          <md-card-title>
+            {{item.word1}}
+            <span [routerLink]="['/search-languages/' + item.lang1 + '/' + item.lang2]">{{item.lang1}} ({{LanguagesService.acronyms[item.lang1].native_name}})</span>
+          </md-card-title>
         </md-card-header>
         <md-card-content>
           <p>
             <a href="https://translate.google.com/#en/{{LanguagesService.getAcronym(item.lang2)}}/{{encodeUrl(item.meaning1)}}"
             target="_blank">
-              {{item.meaning1}} <i class="fa fa-search" aria-hidden="true"></i> <i class="fa fa-external-link" aria-hidden="true"></i>
+              English: {{item.meaning1}} <i class="fa fa-search" aria-hidden="true"></i> <i class="fa fa-external-link" aria-hidden="true"></i>
             </a>
           </p>
+          <p *ngIf="item.native1">{{item.lang2}}: {{item.native1}}</p>
         </md-card-content>
     </div>
     <div class="card-block card-right">
         <md-card-header>
-          <md-card-title>{{item.word2}}</md-card-title>
-          <md-card-subtitle>
-            <a [routerLink]="['/search-languages/' + item.lang1 + '/' + item.lang2]">
-              {{item.lang2}} ({{LanguagesService.acronyms[item.lang2].native_name}})
-            </a>
-          </md-card-subtitle>
+          <md-card-title>
+            {{item.word2}}
+            <span [routerLink]="['/search-languages/' + item.lang1 + '/' + item.lang2]">{{item.lang2}} ({{LanguagesService.acronyms[item.lang2].native_name}})</span>
+          </md-card-title>
         </md-card-header>
         <md-card-content>
           <p>
             <a href="https://translate.google.com/#en/{{LanguagesService.getAcronym(item.lang1)}}/{{encodeUrl(item.meaning2)}}"
             target="_blank">
-              {{item.meaning2}} <i class="fa fa-search" aria-hidden="true"></i> <i class="fa fa-external-link" aria-hidden="true"></i>
+              English: {{item.meaning2}} <i class="fa fa-search" aria-hidden="true"></i> <i class="fa fa-external-link" aria-hidden="true"></i>
             </a>
           </p>
+          <p *ngIf="item.native2">{{item.lang1}}: {{item.native2}}</p>
         </md-card-content>
     </div>
     <md-card-actions>

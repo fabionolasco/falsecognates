@@ -12,6 +12,9 @@ export class LanguagesService {
   private langUrl: string;
   public langs = [];
   public acronyms = {};
+  public loadedAcronyms = false;
+  public sysLanguage = 'en';
+  public websiteText;
 
   constructor(private _http: Http, private _httpService: HttpService, private _messagesService: MessagesService) {
     this.langUrl = this._httpService.baseUrl + 'languages';
@@ -30,19 +33,43 @@ export class LanguagesService {
     return false;
   }
 
+  acronymsObject(arr) {
+    // console.log('arr', arr);
+    let count = arr.length;
+    // console.log('arr', arr);
+    for (let i = 0; i < count; i++) {
+      this.acronyms[arr[i].language_name] = Object.assign({}, arr[i]);
+      // console.log('arr[i].language_name', arr[i].language_name, arr[i]);
+    }
+    localStorage.setItem('acronyms', JSON.stringify(this.acronyms));
+    // console.log('this.acronyms', this.acronyms);
+    this.loadedAcronyms = true;
+  }
+
   getLanguages(): any {
-    let tmp: any = localStorage.getItem('languages');
+    let tmpLang: any = localStorage.getItem('languages');
     if (this.langs.length) {
       // Return content local var
       return  new Promise((resolve) => {
+        let tmpAcron = localStorage.getItem('acronyms');
+        // console.log('tmpLang', tmpLang);
+        // console.log('tmpAcron', tmpAcron);
+        this.acronyms = JSON.parse(tmpAcron);
+        // console.log('here2', this.acronyms);
+        this.loadedAcronyms = true;
         resolve(this.langs);
       });
     } else
-    if (tmp) {
+    if (tmpLang) {
       // Return content from local storage
       return  new Promise((resolve) => {
-        this.langs = JSON.parse(tmp);
-        this.acronyms = JSON.parse(localStorage.getItem('acronyms'));
+        this.langs = JSON.parse(tmpLang);
+        let tmpAcron = localStorage.getItem('acronyms');
+        // console.log('tmpLang5555', tmpLang);
+        // console.log('tmpAcron5555', tmpAcron);
+        this.acronyms = JSON.parse(tmpAcron);
+        // console.log('here233', this.acronyms);
+        this.loadedAcronyms = true;
         resolve(this.langs);
       });
     } else {
@@ -52,6 +79,7 @@ export class LanguagesService {
         .then((response: Response) => {
           localStorage.setItem('languages', JSON.stringify(response.json()));
           this.langs = response.json();
+          // console.log('llllo', this.langs);
           this.acronymsObject(this.langs);
           return new Promise((resolve) => {
             resolve(this.langs);
@@ -60,16 +88,21 @@ export class LanguagesService {
     }
   }
 
-  acronymsObject(arr) {
-    let count = arr.length;
-    for (let i = 0; i < count; i++) {
-      this.acronyms[arr[i].language_name] = Object.assign({}, arr[i]);
-    }
-    localStorage.setItem('acronyms', JSON.stringify(this.acronyms));
-  }
-
   getAcronym(lang) {
     return this.acronyms[lang].acronym;
+  }
+
+  translateSite() {
+    let lang = this.sysLanguage.length === 2 ? this.sysLanguage : 'en';
+    console.log('lang', lang);
+    this._http.get('/assets/json/' + lang.toLowerCase() + '.json')
+      .map((resp) => { console.log('resp', resp); return resp.json(); })
+      .subscribe(
+        (resp) => {
+          this.websiteText = resp;
+          console.log('this.websiteText', this.websiteText);
+        }
+      );
   }
 
 }
