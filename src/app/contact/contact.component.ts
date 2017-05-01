@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../commons/header.service';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { LanguagesService } from '../commons/languages.service';
 import { Observable } from 'rxjs/Observable';
 import { NgForm } from '@angular/forms';
 import 'rxjs/Rx';
@@ -24,7 +25,7 @@ export class ContactComponent implements OnInit {
     _gotcha: ''
   };
 
-  constructor(public _HeaderService: HeaderService, private _Http: Http) {
+  constructor(public _HeaderService: HeaderService, private _Http: Http, public LanguagesService: LanguagesService) {
     this._HeaderService.headerSize = 'small';
   }
 

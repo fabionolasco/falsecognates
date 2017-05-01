@@ -3,9 +3,9 @@
   <div class="row">
     <div class="col-12">
       <ul class="breadcrumbs nopadding">
-        <li><a routerLink="/">Homepage</a></li>
+        <li><a routerLink="/">{{LanguagesService.translate('home_page')}}</a></li>
         <li>/</li>
-        <li>Suggest</li>
+        <li>{{LanguagesService.translate('suggest_a')}}</li>
       </ul>
     </div>
   </div>
@@ -27,14 +27,14 @@
   <div class="row">
     <div class="col-12">
       <br>
-      <h3>Suggest a False Cognate</h3>
+      <h3>{{LanguagesService.translate('suggest_a')}}</h3>
       <hr class="base-hr">
     </div>
   </div>
 
   <div class="row">
     <div class="col-12 col-sm-6">
-      <label for="myDataField1">Please select language 1:</label>
+      <label for="myDataField1">{{LanguagesService.translate('please_select_lang')}} 1:</label>
       <input id="myDataField1"
         name="myDataField1"
         #myDataField1
@@ -55,7 +55,7 @@
     </div>
 
     <div class="col-12 col-sm-6">
-      <label for="myDataField2">Please select language 2:</label>
+      <label for="myDataField2">{{LanguagesService.translate('please_select_lang')}} 2:</label>
       <input id="myDataField2"
         name="myDataField2"
         class="bar-input"
@@ -76,7 +76,7 @@
 
   <div class="row">
     <div class="col-12 col-sm-6">
-      <label for="word1">Word in {{data.lang1}}:</label>
+      <label for="word1">{{LanguagesService.translate('word_in')}} {{data.lang1}}:</label>
       <input type="text"
         name="word1"
         class="bar-input"
@@ -90,7 +90,7 @@
     </div>
 
     <div class="col-12 col-sm-6">
-      <label for="word2">Word in {{data.lang2}}:</label>
+      <label for="word2">{{LanguagesService.translate('word_in')}} {{data.lang2}}:</label>
       <input type="text"
         name="word2"
         class="bar-input"
@@ -107,12 +107,12 @@
       <div class="col-12">
           <div class="alert alert-warning" role="alert">
             <h5>
-              There
-              <span *ngIf="preExistent.length === 1">is one record </span>
-              <span *ngIf="preExistent.length > 1">are some records </span>
-              with those values already.
+              {{LanguagesService.translate('there')}}
+              <span *ngIf="preExistent.length === 1">{{LanguagesService.translate('is_one_record')}} </span>
+              <span *ngIf="preExistent.length > 1">{{LanguagesService.translate('are_some_records')}} </span>
+              {{LanguagesService.translate('values_already')}}.
             </h5>
-            <h6>You can either continue, in case you have a better definition, or you could try sending a different word.</h6>
+            <h6>{{LanguagesService.translate('suggest_a_new_one')}}</h6>
             <ul>
               <li *ngFor="let term of preExistent">
                 <a [routerLink]="['/term-id/' + term.id]" target="_blank">
@@ -126,7 +126,9 @@
 
   <div class="row">
     <div class="col-12 col-lg-6">
-      <label for="native1">Using {{data.lang2}}, define what "{{data.word1}}" means in {{data.lang1}}:</label>
+      <label for="native1">{{LanguagesService.translate('using')}} {{data.lang2}},
+        {{LanguagesService.translate('define_what')}} "{{data.word1}}"
+        {{LanguagesService.translate('means_in')}} {{data.lang1}}:</label>
       <textarea name="native1"
       class="bar-textarea"
       maxlength="1000"
@@ -139,7 +141,9 @@
     </div>
 
     <div class="col-12 col-lg-6">
-      <label for="native2">Using {{data.lang1}}, define what "{{data.word2}}" means in {{data.lang2}}:</label>
+      <label for="native2">{{LanguagesService.translate('using')}} {{data.lang1}},
+        {{LanguagesService.translate('define_what')}} "{{data.word2}}"
+        {{LanguagesService.translate('means_in')}} {{data.lang2}}:</label>
       <textarea name="native2"
       maxlength="1000"
       class="bar-textarea"
@@ -153,7 +157,9 @@
 
   <div class="row">
     <div class="col-12 col-lg-6" *ngIf="data.lang1.indexOf('English') === -1 && data.lang2.indexOf('English') === -1">
-      <label for="meaning1">Optional - Using English, define what "{{data.word1}}" means in {{data.lang1}}:</label>
+      <label for="meaning1">{{LanguagesService.translate('optional')}} - {{LanguagesService.translate('using')}} English,
+        {{LanguagesService.translate('define_what')}} "{{data.word1}}"
+        {{LanguagesService.translate('means_in')}} {{data.lang1}}:</label>
       <textarea name="meaning1"
       class="bar-textarea"
       maxlength="1000"
@@ -166,7 +172,9 @@
     </div>
 
     <div class="col-12 col-lg-6" *ngIf="data.lang1.indexOf('English') === -1 && data.lang2.indexOf('English') === -1">
-      <label for="meaning2">Optional - Using English, define what "{{data.word2}}" means in {{data.lang2}}:</label>
+      <label for="meaning2">{{LanguagesService.translate('optional')}} - {{LanguagesService.translate('using')}} English,
+        {{LanguagesService.translate('define_what')}} "{{data.word2}}"
+        {{LanguagesService.translate('means_in')}} {{data.lang2}}:</label>
       <textarea name="meaning2"
       maxlength="1000"
       class="bar-textarea"
@@ -181,10 +189,7 @@
   <div class="row">
     <div class="col-12 text-right">
       <md-checkbox [(ngModel)]="data.accepted">
-        <div class="base-line-height">
-          I read and accepted the <span class="bold">FalseCognates.com</span>
-        </div>
-        <a id="termsAgreement" routerLink="/agreement" target="_blank"> Terms and Agreements.</a>
+        <span [innerHTML]="LanguagesService.translate('accept_services_agreement')"></span>
       </md-checkbox>
       <hr class="base-hr">
     </div>
@@ -196,7 +201,7 @@
       <button id="search-button"
         md-raised-button
         (click)="submitFalseCognate()"
-        [disabled]="!canSubmit || !data.word1 || !data.word2 || !data.native1 || !data.native2 || !data.accepted">Submit Form</button>
+        [disabled]="!canSubmit || !data.word1 || !data.word2 || !data.native1 || !data.native2 || !data.accepted">{{LanguagesService.translate('submit_form')}}</button>
       <br>
       &nbsp;
       <br>

@@ -19,7 +19,7 @@ export class SuggestComponent implements OnInit {
   public data;
 
   constructor(
-    private _LanguagesService: LanguagesService,
+    public LanguagesService: LanguagesService,
     private _UserService: UserService,
     private _HeaderService: HeaderService,
     private _SuggestService: SuggestService
@@ -35,7 +35,7 @@ export class SuggestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._LanguagesService
+    this.LanguagesService
       .getLanguages()
       .then(data => {
         this.mySource = data;
@@ -57,11 +57,11 @@ export class SuggestComponent implements OnInit {
     if (!this.data.accepted) {
       this.alertMessage = 'You need to accept our Terms and Agreements to submit content to the website.';
     } else
-    if (!this._LanguagesService.searchForLanguage(this.data.lang1)) {
+    if (!this.LanguagesService.searchForLanguage(this.data.lang1)) {
       this.alertMessage = 'Please select a correct language.';
       this.data.lang1 = '';
     } else
-    if (!this._LanguagesService.searchForLanguage(this.data.lang2)) {
+    if (!this.LanguagesService.searchForLanguage(this.data.lang2)) {
       this.alertMessage = 'Please select a correct language.';
       this.data.lang2 = '';
     } else

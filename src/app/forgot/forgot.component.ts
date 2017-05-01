@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessagesService } from '../commons/messages.service';
 import { ForgotService } from './forgot.service';
+import { LanguagesService } from '../commons/languages.service';
 
 @Component({
   selector: 'app-forgot',
@@ -14,7 +15,7 @@ export class ForgotComponent implements OnInit {
     email: ''
   };
 
-  constructor(public MessagesService: MessagesService, private _forgotService: ForgotService) { }
+  constructor(public MessagesService: MessagesService, private _forgotService: ForgotService, public LanguagesService: LanguagesService) { }
 
   sendForgotMessage() {
     if (!this.forgotData.security) {

@@ -1,12 +1,12 @@
 <div class="row" *ngIf="mySource && mySource.length">
 
   <div class="col-12">
-      <h3>Search by Languages</h3>
+      <h3>{{ LanguagesService.translate('search_by_langs') }}</h3>
       <br>
   </div>
 
   <div class="col-12 col-sm-6">
-    <label for="myDataField1">Please select language 1:</label>
+    <label for="myDataField1">{{ LanguagesService.translate('please_select_lang') }} 1:</label>
     <input  id="myDataField1"
       name="myDataField1"
       #myDataField1
@@ -26,7 +26,7 @@
   </div>
 
   <div class="col-12 col-sm-6">
-    <label for="myDataField2">Please select language 2:</label>
+    <label for="myDataField2">{{ LanguagesService.translate('please_select_lang') }} 2:</label>
       <input id="myDataField2"
         name="myDataField2"
         class="bar-input"
@@ -49,18 +49,19 @@
       md-raised-button
       (click)="searchByLanguages()"
       [disabled]="!searchParams.data.lang1 || !searchParams.data.lang2">
-        Search
+        {{ LanguagesService.translate('search') }}
         <span *ngIf="searchParams.data.lang1" >
-          by {{searchParams.data.lang1}} &amp; {{searchParams.data.lang2}}
+          {{ LanguagesService.translate('by') }}
+          {{searchParams.data.lang1}} &amp; {{searchParams.data.lang2}}
         </span>
       </button>
   </div>
 
   <div class="col-12">
     <hr class="base-hr">
-    <h3>Search by Term</h3>
+    <h3>{{ LanguagesService.translate('search_by_term') }}</h3>
     <br>
-    <label for="term">Please type a word to search for:</label>
+    <label for="term">{{ LanguagesService.translate('please_type') }}:</label>
     <input type="text"
       name="term"
       class="bar-input"
@@ -74,7 +75,7 @@
       <button id="search-button"
         md-raised-button
         (click)="searchByTerm()"
-        [disabled]="!searchParams.term">Search by Term</button>
+        [disabled]="!searchParams.term">{{ LanguagesService.translate('search_by_term') }}</button>
   </div>
 
 </div>

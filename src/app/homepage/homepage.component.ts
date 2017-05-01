@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../commons/header.service';
 import { MessagesService } from '../commons/messages.service';
+import { LanguagesService } from '../commons/languages.service';
 
 @Component({
   selector: 'app-homepage',
@@ -9,7 +10,11 @@ import { MessagesService } from '../commons/messages.service';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(public _HeaderService: HeaderService, public MessagesService: MessagesService) {
+  constructor(
+    public LanguagesService: LanguagesService,
+    public _HeaderService: HeaderService,
+    public MessagesService: MessagesService
+  ) {
     this._HeaderService.headerSize = 'normal';
   }
 

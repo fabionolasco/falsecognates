@@ -6,12 +6,13 @@
 
     <div class="hero-content">
 
-      <h1 routerLink="/">False Cognates</h1>
+      <h1 routerLink="/">
+        {{ LanguagesService.translate('false_cognates') }}
+      </h1>
       <div class="description">
         <h2 class="hero-h2">
-          False Cognates are a pair of words, either between different languages or within the same language, that sound similar but have different meanings and/or different roots.
+          {{ LanguagesService.translate('home_def') }}
         </h2>
-        <span class="hero-h2">For a more precise definition please refer:</span>
         <br>
         <a href="https://en.wikipedia.org/wiki/False_cognate" target="_blank">Wikipedia</a>
         &nbsp;&nbsp;

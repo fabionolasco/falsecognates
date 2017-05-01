@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewPasswordService } from './new-password.service';
 import { MessagesService } from '../commons/messages.service';
+import { LanguagesService } from '../commons/languages.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +13,12 @@ export class NewPasswordComponent implements OnInit {
 
   public newPassData;
 
-  constructor(public MessagesService: MessagesService, private _newPasswordService: NewPasswordService, private _router: Router) {
+  constructor(
+    public MessagesService: MessagesService,
+    private _newPasswordService: NewPasswordService,
+    private _router: Router,
+    public LanguagesService: LanguagesService
+  ) {
     this.clearPassData();
     this.newPassData.accessToken = document.location.href.split('=')[1];
     let token = localStorage.setItem('session_token', this.newPassData.accessToken);

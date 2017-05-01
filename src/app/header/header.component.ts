@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { LanguagesService } from '../commons/languages.service';
 import { HeaderService } from '../commons/header.service';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
   public classMap = '';
 
   constructor(
+    public LanguagesService: LanguagesService,
     public _HeaderService: HeaderService,
     private _Router: Router
   ) {

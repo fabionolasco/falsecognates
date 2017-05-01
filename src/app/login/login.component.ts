@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../commons/user.service';
 import { ValidatiorsService } from '../commons/validators.service';
 import { MessagesService } from '../commons/messages.service';
+import { LanguagesService } from '../commons/languages.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private _userService: UserService,
     public MessagesService: MessagesService,
     private _router: Router,
-    private _validatiors: ValidatiorsService
+    private _validatiors: ValidatiorsService,
+    public LanguagesService: LanguagesService
   ) {
     this.cleanModels();
   }

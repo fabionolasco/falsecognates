@@ -4,9 +4,9 @@
 
     <div class="col-12">
       <ul class="breadcrumbs nopadding">
-        <li><a routerLink="/">Homepage</a></li>
+        <li><a routerLink="/">{{LanguagesService.translate('home_page')}}</a></li>
         <li>/</li>
-        <li>Page Not Found</li>
+        <li>{{LanguagesService.translate('not_found')}}</li>
       </ul>
     </div>
 
@@ -14,12 +14,11 @@
 
       &nbsp;<br>
 
-      <h3>404 - Page Not Found</h3>
+      <h3>404 - {{LanguagesService.translate('not_found')}}</h3>
 
       &nbsp;<br>
 
-      <p>Sorry, but the page that you are looking is missing or you might have the wrong address.</p>
-      <p>We will take a look at this issue soon!</p>
+      <span [innerHTML]="LanguagesService.translate('not_found_content')"></span>
 
     </div>
 

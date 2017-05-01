@@ -14,7 +14,7 @@ export class LanguagesService {
   public acronyms = {};
   public loadedAcronyms = false;
   public sysLanguage = 'en';
-  public websiteText;
+  public websiteText = {};
 
   constructor(private _http: Http, private _httpService: HttpService, private _messagesService: MessagesService) {
     this.langUrl = this._httpService.baseUrl + 'languages';
@@ -92,17 +92,19 @@ export class LanguagesService {
     return this.acronyms[lang].acronym;
   }
 
-  translateSite() {
+  translateSite(def: boolean|string) {
     let lang = this.sysLanguage.length === 2 ? this.sysLanguage : 'en';
-    console.log('lang', lang);
-    this._http.get('/assets/json/' + lang.toLowerCase() + '.json')
-      .map((resp) => { console.log('resp', resp); return resp.json(); })
-      .subscribe(
-        (resp) => {
-          this.websiteText = resp;
-          console.log('this.websiteText', this.websiteText);
-        }
-      );
+    let langAcron = typeof def === 'string' ? def : lang;
+    return this._http.get('/assets/json/' + langAcron.toLowerCase() + '.json');
+  }
+
+  translate(key: string): string {
+    if (this.websiteText.hasOwnProperty('translate')) {
+      if (this.websiteText['translate'].hasOwnProperty(key)) {
+        return this.websiteText['translate'][key];
+      }
+    }
+    return '';
   }
 
 }

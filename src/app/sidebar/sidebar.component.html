@@ -23,32 +23,36 @@
     </object>
   </a>
 
-  <h1 routerLink="/" class="pointer">False Cognates</h1>
+  <h1 routerLink="/" class="pointer">
+    {{ LanguagesService.translate('false_cognates') }}
+  </h1>
 
   <hr class="base-hr">
 
   <button md-raised-button (click)="controlBar()" routerLink="/about">
-    About
+    {{ LanguagesService.translate('about') }}
   </button>
 
   <button md-raised-button (click)="controlBar()" routerLink="/contact">
-    Contact
+    {{ LanguagesService.translate('contact') }}
   </button>
 
   <button md-raised-button
     *ngIf="!UserService.token || UserService.token.length <= 0"
     (click)="controlBar()"
     routerLink="/login">
-    Login &amp; Register
+    {{ LanguagesService.translate('login_register') }}
   </button>
 
   <button md-raised-button (click)="controlBar()" class="suggest-button" routerLink="/suggest">
-    Suggest a False Cognate <md-icon class="md-24">add</md-icon>
+    {{ LanguagesService.translate('suggest_a') }} <md-icon class="md-24">add</md-icon>
   </button>
 
   <hr class="base-hr">
 
-  <a (click)="controlBar()" routerLink="/history">Search history</a>
+  <a (click)="controlBar()" routerLink="/history">
+    {{ LanguagesService.translate('search_history') }}
+  </a>
   <span *ngIf="UserService.token && UserService.token.length > 0">
     <br>
     <a (click)="logout()" routerLink="/" >Log Out</a>

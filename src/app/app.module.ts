@@ -16,10 +16,11 @@ import { UserService } from './commons/user.service';
 /* Components */
 import { AppComponent } from './app.component';
 import { Components } from './app.routes';
+import { InitPageComponent } from './init-page/init-page.component';
 
 @NgModule({
   imports: [AppRouterModule, MaterialModule.forRoot(), SharedModule],
-  declarations: [AppComponent, Components],
+  declarations: [AppComponent, Components, InitPageComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
@@ -35,7 +36,7 @@ export class AppModule {
       // Identify Browser/System Language
       let lang = window.navigator['userLanguage'] || window.navigator['language'];
       this.LanguagesService.sysLanguage = lang.split('-')[0].toLowerCase();
-      this.LanguagesService.translateSite();
+      // this.LanguagesService.translateSite();
       // On route change
       this._router.events.subscribe((route) => {
         // Check Session

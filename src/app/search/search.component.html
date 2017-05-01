@@ -5,11 +5,11 @@
     <div class="col-12">
 
       <ul class="breadcrumbs nopadding">
-        <li><a routerLink="/">Homepage</a></li>
+        <li><a routerLink="/">{{LanguagesService.translate('home_page')}}</a></li>
         <li>/</li>
-        <li *ngIf="SearchService.searchType === 'term-id'">Search by ID</li>
-        <li *ngIf="SearchService.searchType === 'search-languages'">Search by languages</li>
-        <li *ngIf="SearchService.searchType === 'search-term'">Search by term</li>
+        <li *ngIf="SearchService.searchType === 'term-id'">{{LanguagesService.translate('search_by_id')}}</li>
+        <li *ngIf="SearchService.searchType === 'search-languages'">{{LanguagesService.translate('search_by_langs')}}</li>
+        <li *ngIf="SearchService.searchType === 'search-term'">{{LanguagesService.translate('search_by_term')}}</li>
       </ul>
 
       <br>
@@ -23,12 +23,15 @@
       </h3>
 
       <h3 *ngIf="(!SearchService.results || SearchService.results.length === 0) && SearchService.searchType === 'term-id'">
-        False Cognate not found.
+        {{LanguagesService.translate('false_cognate_not_found')}}
         <br>&nbsp;
       </h3>
 
       <h3 *ngIf="term && term.length > 0 && SearchService.searchType === 'search-term'">
-        {{SearchService.count}} False Cognate<span *ngIf="SearchService.count !== 1" >s</span> found for "{{term}}"
+        {{SearchService.count}}
+        <span *ngIf="SearchService.count === 1" [innerHTML]="LanguagesService.translate('false_cognate')"></span>
+        <span *ngIf="SearchService.count !== 1" [innerHTML]="LanguagesService.translate('false_cognates')"></span>
+        {{LanguagesService.translate('found_for')}} "{{term}}"
         <br>&nbsp;
       </h3>
 
@@ -37,7 +40,10 @@
       </h6>
 
       <h3 *ngIf="lang2 && lang2.length > 0 && SearchService.searchType === 'search-languages'">
-        {{SearchService.count}} False Cognate<span *ngIf="SearchService.count !== 1" >s</span> found
+        {{SearchService.count}}
+        <span *ngIf="SearchService.count === 1" [innerHTML]="LanguagesService.translate('false_cognate')"></span>
+        <span *ngIf="SearchService.count !== 1" [innerHTML]="LanguagesService.translate('false_cognates')"></span>
+        {{LanguagesService.translate('found')}}
         <span *ngIf="SearchService.count <= SearchService.itemsPerPage"><br>&nbsp;</span>
       </h3>
 

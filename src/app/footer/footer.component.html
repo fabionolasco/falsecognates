@@ -1,17 +1,19 @@
 <div class="row text-center footer">
   <p class="px-2">
-    The source code of this app is Open Source under the license
+    {{ LanguagesService.translate('app_license') }}
     <a href="https://tldrlegal.com/license/mozilla-public-license-2.0-(mpl-2)" target="_blank">
       <span class="hidden-xs-down">Mozilla Public License 2.0 (MPL)</span>
       <span class="hidden-sm-up">MPL</span> <i class="fa fa-external-link" aria-hidden="true"></i>
     </a>
-     and is available on
+     {{ LanguagesService.translate('at_github') }}
     <a href="https://github.com/fabionolasco/falsecognates" target="_blank">
       GitHub <i class="fa fa-external-link" aria-hidden="true"></i>
     </a>.
     <br>
-    The content and the DB data of this APP is Copyrighted. Please check the FalseCognates.com <a routerLink="/agreement">Terms and Agreements</a>.
+    {{ LanguagesService.translate('db_license') }}
+    <a routerLink="/agreement">{{ LanguagesService.translate('services_agreement') }}</a>.
     <br>
-    Website developed by <a href="http://www.fabionolasco.com" target="_blank">Fabio Nolasco <i class="fa fa-external-link" aria-hidden="true"></i></a>
+    {{ LanguagesService.translate('developed_by') }}
+    <a href="http://www.fabionolasco.com" target="_blank">Fabio Nolasco <i class="fa fa-external-link" aria-hidden="true"></i></a>
   </p>
 </div>

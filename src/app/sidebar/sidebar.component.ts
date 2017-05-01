@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguagesService } from '../commons/languages.service';
 import { SidebarService } from './sidebar.service';
 import { UserService } from '../commons/user.service';
 
@@ -10,6 +11,7 @@ import { UserService } from '../commons/user.service';
 export class SidebarComponent implements OnInit {
 
   constructor(
+    public LanguagesService: LanguagesService,
     public SidebarService: SidebarService,
     public UserService: UserService
   ) { }

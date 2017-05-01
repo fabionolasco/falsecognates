@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HeaderService } from '../commons/header.service';
 import { SearchService } from '../commons/search.service';
+import { LanguagesService } from '../commons/languages.service';
 
 @Component({
   selector: 'app-search',
@@ -20,7 +21,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     public HeaderService: HeaderService,
     private _route: ActivatedRoute,
     private _router: Router,
-    public SearchService: SearchService
+    public SearchService: SearchService,
+    public LanguagesService: LanguagesService
   ) {
     this.HeaderService.headerSize = 'small';
     for (let i = 1; i <= 100; i++) {
