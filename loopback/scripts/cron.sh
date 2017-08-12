@@ -22,6 +22,7 @@ else
 
         firewall-cmd --zone=public --add-port=80/tcp
         firewall-cmd --zone=public --add-port=3000/tcp
+        firewall-cmd --zone=public --add-port=3001/tcp
         firewall-cmd --zone=public --add-port=3306/tcp
         firewall-cmd --zone=public --add-port=22/tcp
         firewall-cmd --zone=public --add-port=25/tcp

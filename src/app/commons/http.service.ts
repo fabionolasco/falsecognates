@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HttpService {
 
-  public baseUrl = 'http://www.falsecognates.com:3000/api/';
+  public baseUrl = 'https://falsecognates.com:3001/api/';
 
   public queryHeaders;
 
